@@ -1,4 +1,3 @@
-import math
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
@@ -11,7 +10,8 @@ import streamlit as st
 
 st.set_page_config(
     page_title="Football Player Lab",
-    layout="wide"
+    page_icon="⚽",
+    layout="wide",
 )
 
 st.title("⚽ Football Player Lab")
@@ -61,24 +61,24 @@ NUMERIC_COLUMNS = [
 
 
 # =========================================================
-# HELPER FUNCTIONS
+# BASIC CALCULATION
 # =========================================================
 
 def rate(numerator, denominator, multiplier=1):
 
     num = pd.to_numeric(
         numerator,
-        errors="coerce"
+        errors="coerce",
     ).astype(float)
 
     den = pd.to_numeric(
         denominator,
-        errors="coerce"
+        errors="coerce",
     ).astype(float)
 
     den = den.replace(
         0,
-        float("nan")
+        float("nan"),
     )
 
     return (
@@ -88,12 +88,17 @@ def rate(numerator, denominator, multiplier=1):
     )
 
 
+# =========================================================
+# LOAD AND PREPARE EACH SEASON
+# =========================================================
+
 @st.cache_data
 def load_season(season):
 
     df = pd.read_csv(
         SEASON_FILES[season]
     ).copy()
+
 
     for col in NUMERIC_COLUMNS:
 
@@ -102,10 +107,39 @@ def load_season(season):
 
         df[col] = pd.to_numeric(
             df[col],
-            errors="coerce"
+            errors="coerce",
         )
 
+
     df["season"] = season
+
+
+    # -----------------------------------------------------
+    # KNOWN HISTORICAL DATA GAPS
+    # -----------------------------------------------------
+
+    # 2021/22 source does not contain xG or xA.
+    if season == "2021/22":
+
+        df["xg"] = float("nan")
+        df["xa"] = float("nan")
+
+
+    # Our historical source does not contain opposition-box
+    # touches for 2021/22 through 2024/25.
+    if season in {
+        "2021/22",
+        "2022/23",
+        "2023/24",
+        "2024/25",
+    }:
+
+        df["touches_opposition_box"] = float("nan")
+
+
+    # -----------------------------------------------------
+    # TOTALS
+    # -----------------------------------------------------
 
     df["goal_involvements"] = (
         df["goals"]
@@ -196,7 +230,7 @@ def load_season(season):
         df[new_col] = rate(
             numerator,
             mins,
-            90
+            90,
         )
 
 
@@ -249,36 +283,40 @@ def load_season(season):
         df[new_col] = rate(
             numerator,
             touches,
-            100
+            100,
         )
 
 
     # =====================================================
-    # EFFICIENCY
+    # EFFICIENCY / QUALITY
     # =====================================================
 
     df["shot_accuracy_pct"] = rate(
         df["shots_on_target"],
         shots,
-        100
+        100,
     )
+
 
     df["goal_conversion_pct"] = rate(
         df["goals"],
         shots,
-        100
+        100,
     )
+
 
     df["xG_per_shot"] = rate(
         df["xg"],
-        shots
+        shots,
     )
+
 
     df["tackle_success_pct"] = rate(
         df["tackles_won"],
         df["tackles"],
-        100
+        100,
     )
+
 
     df["duel_win_pct"] = rate(
         df["duels_won"],
@@ -286,51 +324,63 @@ def load_season(season):
             df["duels_won"]
             + df["duels_lost"]
         ),
-        100
+        100,
     )
+
 
     df["goals_minus_xG"] = (
         df["goals"]
         - df["xg"]
     )
 
+
     df["goals_minus_xG_per_90"] = rate(
         df["goals_minus_xG"],
         mins,
-        90
+        90,
     )
+
 
     df["goals_minus_xG_per_100_touches"] = rate(
         df["goals_minus_xG"],
         touches,
-        100
+        100,
     )
+
 
     return df
 
 
 # =========================================================
-# LOAD ALL SIX SEASONS
+# LOAD ALL SEASONS
 # =========================================================
 
 DATA = {
-    season: load_season(season)
-    for season in SEASON_FILES
+
+    season:
+        load_season(season)
+
+    for season
+    in SEASON_FILES
 }
 
+
+# =========================================================
+# HELPERS
+# =========================================================
 
 def has_data(frame, column):
 
     return (
         column in frame.columns
-        and
-        frame[column].notna().any()
+        and frame[column].notna().any()
     )
 
 
 def players_for(season):
 
     return sorted(
+
         DATA[season]["web_name"]
         .dropna()
         .astype(str)
@@ -340,7 +390,7 @@ def players_for(season):
 
 def preferred_index(
     options,
-    preferred_names
+    preferred_names,
 ):
 
     for name in preferred_names:
@@ -353,13 +403,15 @@ def preferred_index(
 
 def player_row(
     season,
-    player
+    player,
 ):
 
     return DATA[season][
+
         DATA[season]["web_name"]
         .astype(str)
         == player
+
     ].iloc[0]
 
 
@@ -374,25 +426,123 @@ def profile_label(profile):
 def season_max_minutes(season):
 
     value = pd.to_numeric(
-        DATA[season]["minutes_played"],
-        errors="coerce"
+
+        DATA[season][
+            "minutes_played"
+        ],
+
+        errors="coerce",
+
     ).max()
 
+
     if pd.isna(value):
+
         return 0.0
+
 
     return float(value)
 
 
 def peer_min_minutes(
     season,
-    percentage
+    percentage,
 ):
 
     return (
-        season_max_minutes(season)
+
+        season_max_minutes(
+            season
+        )
+
         * percentage
+
         / 100
+    )
+
+
+def fmt(
+    value,
+    decimals=2,
+    integer=False,
+):
+
+    if pd.isna(value):
+
+        return "—"
+
+
+    if integer:
+
+        return (
+            f"{int(round(float(value))):,}"
+        )
+
+
+    return (
+        f"{float(value):.{decimals}f}"
+    )
+
+
+def percentile_rank(
+    player_value,
+    peer_values,
+    lower_is_better=False,
+):
+
+    if pd.isna(player_value):
+
+        return float("nan")
+
+
+    peers = pd.to_numeric(
+        peer_values,
+        errors="coerce",
+    ).dropna()
+
+
+    if peers.empty:
+
+        return float("nan")
+
+
+    value = float(
+        player_value
+    )
+
+
+    equal = (
+        peers
+        == value
+    ).sum()
+
+
+    if lower_is_better:
+
+        better = (
+            peers
+            > value
+        ).sum()
+
+    else:
+
+        better = (
+            peers
+            < value
+        ).sum()
+
+
+    return (
+
+        (
+            better
+            + 0.5
+            * equal
+        )
+
+        / len(peers)
+
+        * 100
     )
 
 
@@ -404,17 +554,24 @@ st.header(
     "Compare player-seasons"
 )
 
+
 st.caption(
-    "Each slot has its own season. Choose different players "
-    "across different seasons, or choose the same player in "
-    "several seasons to compare different versions of him."
+    "Choose different players across different seasons, "
+    "or select the same player in several seasons to compare "
+    "different versions of the same player."
 )
 
 
 compare_count = st.radio(
+
     "Number of profiles",
-    [2, 3],
-    horizontal=True
+
+    [
+        2,
+        3,
+    ],
+
+    horizontal=True,
 )
 
 
@@ -424,9 +581,12 @@ slot_columns = st.columns(
 
 
 default_seasons = [
+
     "2025/26",
+
     "2025/26",
-    "2024/25"
+
+    "2024/25",
 ]
 
 
@@ -434,25 +594,27 @@ default_players = [
 
     [
         "Haaland",
-        "Erling Haaland"
+        "Erling Haaland",
     ],
 
     [
         "Gyökeres",
-        "Viktor Gyökeres"
+        "Viktor Gyökeres",
     ],
 
     [
         "Salah",
-        "Mohamed Salah"
-    ]
+        "Mohamed Salah",
+    ],
 ]
 
 
 profiles = []
 
 
-for i in range(compare_count):
+for i in range(
+    compare_count
+):
 
     with slot_columns[i]:
 
@@ -460,9 +622,11 @@ for i in range(compare_count):
             SEASON_FILES.keys()
         )
 
+
         season_default = (
             default_seasons[i]
         )
+
 
         season_index = (
 
@@ -485,7 +649,7 @@ for i in range(compare_count):
 
             index=season_index,
 
-            key=f"profile_season_{i}"
+            key=f"profile_season_{i}",
         )
 
 
@@ -495,8 +659,10 @@ for i in range(compare_count):
 
 
         p_index = preferred_index(
+
             options,
-            default_players[i]
+
+            default_players[i],
         )
 
 
@@ -511,17 +677,18 @@ for i in range(compare_count):
             key=(
                 f"profile_player_"
                 f"{i}_{season}"
-            )
+            ),
         )
 
 
         row = player_row(
             season,
-            player
+            player,
         )
 
 
         profiles.append(
+
             {
                 "season":
                     season,
@@ -535,13 +702,13 @@ for i in range(compare_count):
                 "position":
                     str(
                         row["position"]
-                    )
+                    ),
             }
         )
 
 
 # =========================================================
-# SAMPLE SIZE
+# PEER SAMPLE SIZE
 # =========================================================
 
 sample_pct = st.slider(
@@ -555,13 +722,16 @@ sample_pct = st.slider(
 
     value=25,
 
-    step=5
+    step=5,
 )
 
 
 selected_seasons = list(
+
     dict.fromkeys(
+
         p["season"]
+
         for p in profiles
     )
 )
@@ -573,15 +743,16 @@ threshold_text = []
 for season in selected_seasons:
 
     threshold_text.append(
-        (
-            f"{season}: "
-            f"{peer_min_minutes(season, sample_pct):.0f}+ min"
-        )
+
+        f"{season}: "
+        f"{peer_min_minutes(season, sample_pct):.0f}+ min"
     )
 
 
 st.caption(
+
     "Peer-group thresholds — "
+
     + " · ".join(
         threshold_text
     )
@@ -598,21 +769,30 @@ notes = []
 if "2021/22" in selected_seasons:
 
     notes.append(
+
         "2021/22 has no xG, xA or opposition-box-touch "
         "data in our source."
     )
 
 
 if any(
+
     season in {
+
         "2022/23",
+
         "2023/24",
-        "2024/25"
+
+        "2024/25",
+
     }
-    for season in selected_seasons
+
+    for season
+    in selected_seasons
 ):
 
     notes.append(
+
         "Opposition-box touches are unavailable in our "
         "historical source for 2022/23–2024/25."
     )
@@ -626,28 +806,8 @@ if notes:
 
 
 # =========================================================
-# TABLE HELPERS
+# TABLE HELPER
 # =========================================================
-
-def fmt(
-    value,
-    decimals=2,
-    integer=False
-):
-
-    if pd.isna(value):
-        return "—"
-
-    if integer:
-
-        return (
-            f"{int(round(float(value))):,}"
-        )
-
-    return (
-        f"{float(value):.{decimals}f}"
-    )
-
 
 def make_table(specs):
 
@@ -655,20 +815,30 @@ def make_table(specs):
 
 
     for (
+
         label,
+
         column,
+
         decimals,
-        integer
+
+        integer,
+
     ) in specs:
+
 
         values = []
 
 
         for profile in profiles:
 
-            row = profile["row"]
+            row = (
+                profile["row"]
+            )
+
 
             value = (
+
                 row[column]
 
                 if column
@@ -677,13 +847,16 @@ def make_table(specs):
                 else pd.NA
             )
 
+
             values.append(
                 value
             )
 
 
         if all(
+
             pd.isna(v)
+
             for v in values
         ):
 
@@ -691,16 +864,18 @@ def make_table(specs):
 
 
         result = {
-            "Metric": label
+
+            "Metric":
+                label
         }
 
 
         for (
             profile,
-            value
+            value,
         ) in zip(
             profiles,
-            values
+            values,
         ):
 
             result[
@@ -708,9 +883,12 @@ def make_table(specs):
                     profile
                 )
             ] = fmt(
+
                 value,
+
                 decimals=decimals,
-                integer=integer
+
+                integer=integer,
             )
 
 
@@ -734,183 +912,183 @@ OVERVIEW = [
         "Minutes",
         "minutes_played",
         0,
-        True
+        True,
     ),
 
     (
         "Goals",
         "goals",
         0,
-        True
+        True,
     ),
 
     (
         "Assists",
         "assists",
         0,
-        True
+        True,
     ),
 
     (
         "Goal involvements",
         "goal_involvements",
         0,
-        True
+        True,
     ),
 
     (
         "xG",
         "xg",
         2,
-        False
+        False,
     ),
 
     (
         "xA",
         "xa",
         2,
-        False
+        False,
     ),
 
     (
         "Goals − xG",
         "goals_minus_xG",
         2,
-        False
+        False,
     ),
 
     (
         "Shots",
         "total_shots",
         0,
-        True
+        True,
     ),
 
     (
         "Shots on target",
         "shots_on_target",
         0,
-        True
+        True,
     ),
 
     (
         "Shot accuracy %",
         "shot_accuracy_pct",
         1,
-        False
+        False,
     ),
 
     (
         "Goal conversion %",
         "goal_conversion_pct",
         1,
-        False
+        False,
     ),
 
     (
         "xG / shot",
         "xG_per_shot",
         2,
-        False
+        False,
     ),
 
     (
         "Chances created",
         "chances_created",
         0,
-        True
+        True,
     ),
 
     (
         "Successful dribbles",
         "successful_dribbles",
         0,
-        True
+        True,
     ),
 
     (
         "Touches",
         "touches",
         0,
-        True
+        True,
     ),
 
     (
         "Touches in opposition box",
         "touches_opposition_box",
         0,
-        True
+        True,
     ),
 
     (
         "Dispossessed",
         "dispossessed",
         0,
-        True
+        True,
     ),
 
     (
         "Tackles",
         "tackles",
         0,
-        True
+        True,
     ),
 
     (
         "Tackles won",
         "tackles_won",
         0,
-        True
+        True,
     ),
 
     (
         "Tackle success %",
         "tackle_success_pct",
         1,
-        False
+        False,
     ),
 
     (
         "Interceptions",
         "interceptions",
         0,
-        True
+        True,
     ),
 
     (
         "Recoveries",
         "recoveries",
         0,
-        True
+        True,
     ),
 
     (
         "Blocks",
         "blocks",
         0,
-        True
+        True,
     ),
 
     (
         "Clearances",
         "clearances",
         0,
-        True
+        True,
     ),
 
     (
         "Duels won",
         "duels_won",
         0,
-        True
+        True,
     ),
 
     (
         "Duel win %",
         "duel_win_pct",
         1,
-        False
-    )
+        False,
+    ),
 ]
 
 
@@ -920,148 +1098,148 @@ PER90_TABLE = [
         "Goals / 90",
         "goals_per_90",
         2,
-        False
+        False,
     ),
 
     (
         "Assists / 90",
         "assists_per_90",
         2,
-        False
+        False,
     ),
 
     (
         "G+A / 90",
         "GI_per_90",
         2,
-        False
+        False,
     ),
 
     (
         "xG / 90",
         "xG_per_90",
         2,
-        False
+        False,
     ),
 
     (
         "xA / 90",
         "xA_per_90",
         2,
-        False
+        False,
     ),
 
     (
         "xG+xA / 90",
         "xGI_per_90",
         2,
-        False
+        False,
     ),
 
     (
         "Goals − xG / 90",
         "goals_minus_xG_per_90",
         2,
-        False
+        False,
     ),
 
     (
         "Shots / 90",
         "shots_per_90",
         2,
-        False
+        False,
     ),
 
     (
         "Shots on target / 90",
         "shots_on_target_per_90",
         2,
-        False
+        False,
     ),
 
     (
         "Chances created / 90",
         "chances_created_per_90",
         2,
-        False
+        False,
     ),
 
     (
         "Dribbles / 90",
         "dribbles_per_90",
         2,
-        False
+        False,
     ),
 
     (
         "Touches / 90",
         "touches_per_90",
         2,
-        False
+        False,
     ),
 
     (
         "Box touches / 90",
         "box_touches_per_90",
         2,
-        False
+        False,
     ),
 
     (
         "Dispossessed / 90",
         "dispossessed_per_90",
         2,
-        False
+        False,
     ),
 
     (
         "Tackles / 90",
         "tackles_per_90",
         2,
-        False
+        False,
     ),
 
     (
         "Tackles won / 90",
         "tackles_won_per_90",
         2,
-        False
+        False,
     ),
 
     (
         "Interceptions / 90",
         "interceptions_per_90",
         2,
-        False
+        False,
     ),
 
     (
         "Recoveries / 90",
         "recoveries_per_90",
         2,
-        False
+        False,
     ),
 
     (
         "Blocks / 90",
         "blocks_per_90",
         2,
-        False
+        False,
     ),
 
     (
         "Clearances / 90",
         "clearances_per_90",
         2,
-        False
+        False,
     ),
 
     (
         "Duels won / 90",
         "duels_won_per_90",
         2,
-        False
-    )
+        False,
+    ),
 ]
 
 
@@ -1071,92 +1249,92 @@ PER_TOUCH_TABLE = [
         "Goals / 100 touches",
         "goals_per_100_touches",
         2,
-        False
+        False,
     ),
 
     (
         "Assists / 100 touches",
         "assists_per_100_touches",
         2,
-        False
+        False,
     ),
 
     (
         "G+A / 100 touches",
         "GI_per_100_touches",
         2,
-        False
+        False,
     ),
 
     (
         "xG / 100 touches",
         "xG_per_100_touches",
         2,
-        False
+        False,
     ),
 
     (
         "xA / 100 touches",
         "xA_per_100_touches",
         2,
-        False
+        False,
     ),
 
     (
         "xG+xA / 100 touches",
         "xGI_per_100_touches",
         2,
-        False
+        False,
     ),
 
     (
         "Goals − xG / 100 touches",
         "goals_minus_xG_per_100_touches",
         2,
-        False
+        False,
     ),
 
     (
         "Shots / 100 touches",
         "shots_per_100_touches",
         2,
-        False
+        False,
     ),
 
     (
         "Shots on target / 100 touches",
         "shots_on_target_per_100_touches",
         2,
-        False
+        False,
     ),
 
     (
         "Chances created / 100 touches",
         "chances_created_per_100_touches",
         2,
-        False
+        False,
     ),
 
     (
         "Dribbles / 100 touches",
         "dribbles_per_100_touches",
         2,
-        False
+        False,
     ),
 
     (
         "Box touches / 100 touches",
         "box_touches_per_100_touches",
         2,
-        False
+        False,
     ),
 
     (
         "Dispossessed / 100 touches",
         "dispossessed_per_100_touches",
         2,
-        False
-    )
+        False,
+    ),
 ]
 
 
@@ -1170,10 +1348,11 @@ st.header(
 
 
 tab_overview, tab_per90, tab_touch = st.tabs(
+
     [
         "Overview",
         "Per 90",
-        "Per 100 touches"
+        "Per 100 touches",
     ]
 )
 
@@ -1181,33 +1360,42 @@ tab_overview, tab_per90, tab_touch = st.tabs(
 with tab_overview:
 
     st.dataframe(
+
         make_table(
             OVERVIEW
         ),
+
         hide_index=True,
-        width="stretch"
+
+        width="stretch",
     )
 
 
 with tab_per90:
 
     st.dataframe(
+
         make_table(
             PER90_TABLE
         ),
+
         hide_index=True,
-        width="stretch"
+
+        width="stretch",
     )
 
 
 with tab_touch:
 
     st.dataframe(
+
         make_table(
             PER_TOUCH_TABLE
         ),
+
         hide_index=True,
-        width="stretch"
+
+        width="stretch",
     )
 
 
@@ -1332,7 +1520,7 @@ METRICS = {
         "duels_won_per_90",
 
     "Duel win %":
-        "duel_win_pct"
+        "duel_win_pct",
 }
 
 
@@ -1341,10 +1529,12 @@ def metric_common_to_selected_seasons(
 ):
 
     return all(
+
         has_data(
             DATA[season],
-            column
+            column,
         )
+
         for season
         in selected_seasons
     )
@@ -1352,11 +1542,12 @@ def metric_common_to_selected_seasons(
 
 COMMON_METRICS = {
 
-    label: column
+    label:
+        column
 
     for (
         label,
-        column
+        column,
     ) in METRICS.items()
 
     if metric_common_to_selected_seasons(
@@ -1375,9 +1566,8 @@ st.header(
 
 
 st.caption(
-    "The background includes qualified players from every "
-    "season selected above. Selected player-seasons are highlighted. "
-    "Metrics unavailable in any selected season are hidden."
+    "The background contains qualified players from every season "
+    "selected above. Selected player-seasons are highlighted."
 )
 
 
@@ -1398,6 +1588,7 @@ else:
     preferred_x = (
         "Touches / 90"
     )
+
 
     preferred_y = (
 
@@ -1438,7 +1629,7 @@ else:
 
         else min(
             1,
-            len(metric_labels) - 1
+            len(metric_labels) - 1,
         )
     )
 
@@ -1458,7 +1649,7 @@ else:
 
             index=x_default,
 
-            key="cross_x"
+            key="cross_x",
         )
 
 
@@ -1472,12 +1663,14 @@ else:
 
             index=y_default,
 
-            key="cross_y"
+            key="cross_y",
         )
 
 
     positions = sorted(
+
         {
+
             str(pos)
 
             for season
@@ -1499,8 +1692,10 @@ else:
 
 
     position_options = [
+
         "All positions",
-        *positions
+
+        *positions,
     ]
 
 
@@ -1524,7 +1719,7 @@ else:
                 else 0
             ),
 
-            key="cross_position"
+            key="cross_position",
         )
 
 
@@ -1533,6 +1728,7 @@ else:
             x_label
         ]
     )
+
 
     y_col = (
         COMMON_METRICS[
@@ -1552,13 +1748,18 @@ else:
 
 
         frame = frame[
+
             frame[
                 "minutes_played"
             ]
-            >= peer_min_minutes(
+
+            >=
+
+            peer_min_minutes(
                 season,
-                sample_pct
+                sample_pct,
             )
+
         ].copy()
 
 
@@ -1568,11 +1769,16 @@ else:
         ):
 
             frame = frame[
+
                 frame[
                     "position"
                 ]
                 .astype(str)
-                == position_filter
+
+                ==
+
+                position_filter
+
             ].copy()
 
 
@@ -1588,12 +1794,16 @@ else:
             frame[
                 "season_minutes_share"
             ] = (
+
                 frame[
                     "minutes_played"
                 ]
+
                 / max_minutes
+
                 * 100
             )
+
 
         else:
 
@@ -1605,11 +1815,14 @@ else:
         frame[
             "hover_name"
         ] = (
+
             frame[
                 "web_name"
             ]
             .astype(str)
+
             + " · "
+
             + season
         )
 
@@ -1620,15 +1833,18 @@ else:
 
 
     landscape = pd.concat(
+
         landscape_frames,
-        ignore_index=True
+
+        ignore_index=True,
     )
 
 
     landscape = landscape.dropna(
+
         subset=[
             x_col,
-            y_col
+            y_col,
         ]
     )
 
@@ -1644,10 +1860,14 @@ else:
         hover_name="hover_name",
 
         hover_data=[
+
             "position",
+
             "minutes_played",
+
             "goals",
-            "assists"
+
+            "assists",
         ],
 
         size="season_minutes_share",
@@ -1655,6 +1875,7 @@ else:
         color="season",
 
         labels={
+
             x_col:
                 x_label,
 
@@ -1665,33 +1886,38 @@ else:
                 "Season",
 
             "season_minutes_share":
-                "Season minutes %"
-        }
+                "Season minutes %",
+        },
     )
 
-
-    # Highlight selected player-seasons
 
     for profile in profiles:
 
         if (
+
             position_filter
             != "All positions"
 
             and
 
-            profile["position"]
+            profile[
+                "position"
+            ]
             != position_filter
         ):
 
             continue
 
 
-        row = profile["row"]
+        row = (
+            profile["row"]
+        )
+
 
         xv = row[
             x_col
         ]
+
 
         yv = row[
             y_col
@@ -1699,8 +1925,11 @@ else:
 
 
         if (
+
             pd.isna(xv)
+
             or
+
             pd.isna(yv)
         ):
 
@@ -1711,13 +1940,18 @@ else:
 
             go.Scatter(
 
-                x=[xv],
+                x=[
+                    xv
+                ],
 
-                y=[yv],
+                y=[
+                    yv
+                ],
 
                 mode="markers+text",
 
                 text=[
+
                     profile_label(
                         profile
                     )
@@ -1726,25 +1960,52 @@ else:
                 textposition="top center",
 
                 marker=dict(
+
                     size=18,
-                    symbol="diamond"
+
+                    symbol="diamond",
+
+                    line=dict(
+                        width=2
+                    ),
                 ),
 
                 name=profile_label(
                     profile
-                )
+                ),
             )
         )
 
 
+    fig_scatter.update_layout(
+
+        margin=dict(
+
+            l=20,
+
+            r=20,
+
+            t=25,
+
+            b=20,
+        ),
+
+        legend_title_text=(
+            "Season / selected profiles"
+        ),
+    )
+
+
     st.plotly_chart(
+
         fig_scatter,
-        width="stretch"
+
+        width="stretch",
     )
 
 
 # =========================================================
-# CROSS-SEASON RADAR
+# RADAR
 # =========================================================
 
 st.header(
@@ -1753,66 +2014,77 @@ st.header(
 
 
 st.caption(
-    "Each player-season is ranked against players in its own "
-    "season and its own position. Further out always means better."
+    "The radar is a percentile chart. Each player-season is "
+    "ranked against players in its own season and position. "
+    "Further from the centre always means better."
 )
 
 
 radar_mode = st.radio(
 
-    "Radar normalisation",
+    "Radar basis",
 
     [
         "Per 100 touches",
-        "Per 90"
+        "Per 90",
     ],
 
-    horizontal=True
+    horizontal=True,
 )
 
 
 # =========================================================
-# RADAR METRIC CATALOGUE
+# PER 100 TOUCHES RADAR
 # =========================================================
 
-if radar_mode == "Per 100 touches":
+if (
+    radar_mode
+    == "Per 100 touches"
+):
+
+    st.info(
+        "PER 100 TOUCHES MODE — attacking and on-ball volume "
+        "metrics are divided by touches. Defensive actions remain "
+        "per 90. Percentages retain their natural units."
+    )
+
 
     RADAR_CANDIDATES = {
 
-        "Goals":
+        "Goals / 100 touches":
             "goals_per_100_touches",
 
-        "Assists":
+        "Assists / 100 touches":
             "assists_per_100_touches",
 
-        "Goal involvements":
+        "G+A / 100 touches":
             "GI_per_100_touches",
 
-        "xG":
+        "xG / 100 touches":
             "xG_per_100_touches",
 
-        "xA":
+        "xA / 100 touches":
             "xA_per_100_touches",
 
-        "xG+xA":
+        "xG+xA / 100 touches":
             "xGI_per_100_touches",
 
-        "Shots":
+        "Shots / 100 touches":
             "shots_per_100_touches",
 
-        "Shots on target":
+        "Shots on target / 100 touches":
             "shots_on_target_per_100_touches",
 
-        "Chances created":
+        "Chances created / 100 touches":
             "chances_created_per_100_touches",
 
-        "Dribbles":
+        "Successful dribbles / 100 touches":
             "dribbles_per_100_touches",
 
-        "Box touches":
+        "Box touches / 100 touches":
             "box_touches_per_100_touches",
 
-        "Ball security":
+        "Ball security (↓ losses / 100 touches)":
             "dispossessed_per_100_touches",
 
         "Touches / 90":
@@ -1827,7 +2099,7 @@ if radar_mode == "Per 100 touches":
         "xG / shot":
             "xG_per_shot",
 
-        "Goals − xG":
+        "Goals − xG / 100 touches":
             "goals_minus_xG_per_100_touches",
 
         "Tackles / 90":
@@ -1855,51 +2127,81 @@ if radar_mode == "Per 100 touches":
             "duels_won_per_90",
 
         "Duel win %":
-            "duel_win_pct"
+            "duel_win_pct",
     }
 
 
+    preferred_radar = [
+
+        "Goals / 100 touches",
+
+        "xG / 100 touches",
+
+        "Assists / 100 touches",
+
+        "xA / 100 touches",
+
+        "Shots / 100 touches",
+
+        "Chances created / 100 touches",
+
+        "Successful dribbles / 100 touches",
+
+        "Box touches / 100 touches",
+    ]
+
+
+# =========================================================
+# PER 90 RADAR
+# =========================================================
+
 else:
+
+    st.info(
+        "PER 90 MODE — rate metrics are expressed per 90 minutes. "
+        "Percentages retain their natural units."
+    )
+
 
     RADAR_CANDIDATES = {
 
-        "Goals":
+        "Goals / 90":
             "goals_per_90",
 
-        "Assists":
+        "Assists / 90":
             "assists_per_90",
 
-        "Goal involvements":
+        "G+A / 90":
             "GI_per_90",
 
-        "xG":
+        "xG / 90":
             "xG_per_90",
 
-        "xA":
+        "xA / 90":
             "xA_per_90",
 
-        "xG+xA":
+        "xG+xA / 90":
             "xGI_per_90",
 
-        "Shots":
+        "Shots / 90":
             "shots_per_90",
 
-        "Shots on target":
+        "Shots on target / 90":
             "shots_on_target_per_90",
 
-        "Chances created":
+        "Chances created / 90":
             "chances_created_per_90",
 
-        "Dribbles":
+        "Successful dribbles / 90":
             "dribbles_per_90",
 
-        "Box touches":
+        "Box touches / 90":
             "box_touches_per_90",
 
-        "Ball security":
+        "Ball security (↓ losses / 90)":
             "dispossessed_per_90",
 
-        "Touches":
+        "Touches / 90":
             "touches_per_90",
 
         "Shot accuracy %":
@@ -1911,48 +2213,70 @@ else:
         "xG / shot":
             "xG_per_shot",
 
-        "Goals − xG":
+        "Goals − xG / 90":
             "goals_minus_xG_per_90",
 
-        "Tackles":
+        "Tackles / 90":
             "tackles_per_90",
 
-        "Tackles won":
+        "Tackles won / 90":
             "tackles_won_per_90",
 
         "Tackle success %":
             "tackle_success_pct",
 
-        "Interceptions":
+        "Interceptions / 90":
             "interceptions_per_90",
 
-        "Recoveries":
+        "Recoveries / 90":
             "recoveries_per_90",
 
-        "Blocks":
+        "Blocks / 90":
             "blocks_per_90",
 
-        "Clearances":
+        "Clearances / 90":
             "clearances_per_90",
 
-        "Duels won":
+        "Duels won / 90":
             "duels_won_per_90",
 
         "Duel win %":
-            "duel_win_pct"
+            "duel_win_pct",
     }
 
 
-# Only offer radar metrics that exist
-# in EVERY selected season.
+    preferred_radar = [
+
+        "Goals / 90",
+
+        "xG / 90",
+
+        "Assists / 90",
+
+        "xA / 90",
+
+        "Shots / 90",
+
+        "Chances created / 90",
+
+        "Successful dribbles / 90",
+
+        "Box touches / 90",
+    ]
+
+
+# =========================================================
+# HIDE METRICS MISSING FROM ANY SELECTED SEASON
+# =========================================================
 
 RADAR = {
 
-    label: column
+    label:
+        column
 
     for (
         label,
-        column
+        column,
     ) in RADAR_CANDIDATES.items()
 
     if metric_common_to_selected_seasons(
@@ -1962,30 +2286,20 @@ RADAR = {
 
 
 # =========================================================
-# LOWER = BETTER METRICS
+# LOWER IS BETTER
 # =========================================================
 
-LOWER_IS_BETTER = {
-    "Ball security"
+LOWER_IS_BETTER_COLUMNS = {
+
+    "dispossessed_per_90",
+
+    "dispossessed_per_100_touches",
 }
 
 
 # =========================================================
-# DEFAULT RADAR METRICS
+# DEFAULT RADAR SELECTION
 # =========================================================
-
-preferred_radar = [
-
-    "Goals",
-    "xG",
-    "Assists",
-    "xA",
-    "Shots",
-    "Chances created",
-    "Dribbles",
-    "Box touches"
-]
-
 
 default_radar = [
 
@@ -2005,6 +2319,7 @@ for metric in RADAR:
     ) >= 6:
 
         break
+
 
     if (
         metric
@@ -2026,21 +2341,17 @@ selected_radar = st.multiselect(
 
     default=default_radar,
 
-    max_selections=12
+    max_selections=12,
+
+    key=(
+        f"radar_metrics_"
+        f"{radar_mode}"
+    ),
 )
 
 
-if radar_mode == "Per 100 touches":
-
-    st.caption(
-        "Attacking/on-ball rates use per 100 touches. "
-        "Defensive actions stay per 90 because a player's "
-        "own touches are not a sensible defensive-opportunity denominator."
-    )
-
-
 # =========================================================
-# BUILD RADAR
+# DRAW RADAR
 # =========================================================
 
 if len(
@@ -2057,15 +2368,31 @@ else:
     fig_radar = go.Figure()
 
 
+    raw_table = {
+
+        "Metric":
+            selected_radar
+    }
+
+
+    percentile_table = {
+
+        "Metric":
+            selected_radar
+    }
+
+
     for profile in profiles:
 
         season = (
             profile["season"]
         )
 
+
         row = (
             profile["row"]
         )
+
 
         position = (
             profile["position"]
@@ -2080,7 +2407,7 @@ else:
         threshold = (
             peer_min_minutes(
                 season,
-                sample_pct
+                sample_pct,
             )
         )
 
@@ -2092,7 +2419,10 @@ else:
                     "position"
                 ]
                 .astype(str)
-                == position
+
+                ==
+
+                position
             )
 
             &
@@ -2101,7 +2431,10 @@ else:
                 frame[
                     "minutes_played"
                 ]
-                >= threshold
+
+                >=
+
+                threshold
             )
 
         ].copy()
@@ -2112,13 +2445,11 @@ else:
         actual_values = []
 
 
-        for label in selected_radar:
+        for metric_label in selected_radar:
 
-            column = (
-                RADAR[
-                    label
-                ]
-            )
+            column = RADAR[
+                metric_label
+            ]
 
 
             value = row[
@@ -2126,89 +2457,82 @@ else:
             ]
 
 
-            peer_values = pd.to_numeric(
+            percentile = percentile_rank(
+
+                value,
 
                 peers[
                     column
                 ],
 
-                errors="coerce"
+                lower_is_better=(
 
-            ).dropna()
+                    column
 
+                    in
 
-            if (
-                pd.isna(value)
-                or
-                peer_values.empty
-            ):
-
-                percentile = 0.0
-
-                actual_value = (
-                    float("nan")
-                )
+                    LOWER_IS_BETTER_COLUMNS
+                ),
+            )
 
 
-            else:
+            actual_value = (
 
-                value = float(
-                    value
-                )
+                float(value)
 
-                actual_value = (
-                    value
-                )
+                if pd.notna(value)
 
-
-                equal = (
-                    peer_values
-                    == value
-                ).sum()
-
-
-                if (
-                    label
-                    in LOWER_IS_BETTER
-                ):
-
-                    better = (
-                        peer_values
-                        > value
-                    ).sum()
-
-
-                else:
-
-                    better = (
-                        peer_values
-                        < value
-                    ).sum()
-
-
-                percentile = (
-
-                    (
-                        better
-                        + 0.5
-                        * equal
-                    )
-
-                    / len(
-                        peer_values
-                    )
-
-                    * 100
-                )
+                else float("nan")
+            )
 
 
             percentiles.append(
                 percentile
             )
 
+
             actual_values.append(
                 actual_value
             )
+
+
+        display_name = (
+            profile_label(
+                profile
+            )
+        )
+
+
+        raw_table[
+            display_name
+        ] = [
+
+            fmt(
+                value,
+                decimals=2,
+                integer=False,
+            )
+
+            for value
+            in actual_values
+        ]
+
+
+        percentile_table[
+            display_name
+        ] = [
+
+            (
+                "—"
+
+                if pd.isna(value)
+
+                else f"{value:.0f}"
+            )
+
+            for value
+            in percentiles
+        ]
 
 
         fig_radar.add_trace(
@@ -2221,31 +2545,45 @@ else:
 
                 fill="toself",
 
-                name=profile_label(
-                    profile
-                ),
+                name=display_name,
 
                 customdata=actual_values,
 
                 hovertemplate=(
 
-                    "%{theta}"
+                    "<b>%{theta}</b>"
 
                     "<br>Percentile: "
                     "%{r:.0f}"
 
-                    "<br>Actual value: "
+                    "<br>Actual: "
                     "%{customdata:.2f}"
 
                     "<extra>"
                     "%{fullData.name}"
                     "</extra>"
-                )
+                ),
             )
         )
 
 
+    # =====================================================
+    # RADAR APPEARANCE
+    # =====================================================
+
     fig_radar.update_layout(
+
+        title=dict(
+
+            text=(
+
+                "Position-relative percentile radar"
+                f" · {radar_mode}"
+            ),
+
+            x=0.5,
+        ),
+
 
         polar=dict(
 
@@ -2255,45 +2593,163 @@ else:
 
                 range=[
                     0,
-                    100
+                    100,
                 ],
 
                 tickvals=[
+
                     20,
+
                     40,
+
                     60,
+
                     80,
-                    100
-                ]
+
+                    100,
+                ],
+
+                ticktext=[
+
+                    "20th",
+
+                    "40th",
+
+                    "60th",
+
+                    "80th",
+
+                    "100th",
+                ],
             )
         ),
 
+
         showlegend=True,
 
-        height=720
+
+        height=760,
+
+
+        margin=dict(
+
+            l=70,
+
+            r=70,
+
+            t=90,
+
+            b=70,
+        ),
     )
 
 
     st.plotly_chart(
+
         fig_radar,
-        width="stretch"
+
+        width="stretch",
     )
 
 
+    st.caption(
+        "Changing Per 90 ↔ Per 100 touches changes the raw "
+        "statistic used to calculate each percentile. The polygon "
+        "can still look similar when a player ranks similarly "
+        "against his positional peers under both measures."
+    )
+
+
+    # =====================================================
+    # EXACT RADAR NUMBERS
+    # =====================================================
+
+    show_numbers = st.checkbox(
+
+        "Show the exact numbers behind the radar",
+
+        value=True,
+    )
+
+
+    if show_numbers:
+
+        number_tab, percentile_tab = st.tabs(
+
+            [
+
+                f"Raw values · {radar_mode}",
+
+                "Percentiles drawn on radar",
+            ]
+        )
+
+
+        with number_tab:
+
+            st.dataframe(
+
+                pd.DataFrame(
+                    raw_table
+                ),
+
+                hide_index=True,
+
+                width="stretch",
+            )
+
+
+            st.caption(
+
+                "These are the actual values being used by the "
+                f"{radar_mode} radar. For Ball security, the "
+                "underlying value is ball losses, so lower is better."
+            )
+
+
+        with percentile_tab:
+
+            st.dataframe(
+
+                pd.DataFrame(
+                    percentile_table
+                ),
+
+                hide_index=True,
+
+                width="stretch",
+            )
+
+
+            st.caption(
+
+                "These 0–100 percentile values are the numbers "
+                "that determine the distance from the centre "
+                "of the radar."
+            )
+
+
 # =========================================================
-# HOW TO USE
+# EXPLANATION
 # =========================================================
 
 st.divider()
 
-st.subheader(
-    "Cross-season and multi-season comparison"
-)
 
-st.write(
-    "For a cross-player comparison, choose different players and "
-    "different seasons in the profile slots. For a multi-season "
-    "comparison of one player, choose that player in two or three "
-    "slots and give each slot a different season. The comparison "
-    "tables, scatter plot and radar all update together."
-)
+with st.expander(
+    "How to read the comparisons"
+):
+
+    st.markdown(
+        """
+- **Per 90** measures production or activity during a standard 90 minutes.
+- **Per 100 touches** measures how much a player produces when he is actually involved with the ball.
+- **Touches / 90** shows how involved the player is, so it is useful alongside per-touch efficiency.
+- The radar itself displays **percentile rank**, not the raw statistic.
+- Radar percentiles are calculated against players in the **same position and same season** who pass the sample threshold.
+- **100th percentile means better** and further from the centre is always better.
+- **Ball security is reversed**: fewer dispossessions produces a higher percentile.
+- Defensive actions remain **per 90** in the per-touch radar because the player's own touches are not a sensible denominator for defensive opportunities.
+- Because the radar shows ranks, a player's shape can sometimes remain fairly similar between Per 90 and Per 100 touches even though the underlying numbers have changed.
+"""
+    )

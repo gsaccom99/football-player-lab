@@ -5,7 +5,7 @@ import streamlit as st
 
 
 # =========================================================
-# PAGE SETUP
+# PAGE
 # =========================================================
 
 st.set_page_config(
@@ -17,13 +17,13 @@ st.set_page_config(
 st.title("⚽ Football Player Lab")
 
 st.write(
-    "Compare Premier League player-seasons using totals, per-90, "
-    "per-touch and efficiency metrics."
+    "Compare Premier League players across individual seasons "
+    "or grouped multi-season samples."
 )
 
 
 # =========================================================
-# SEASON FILES
+# SOURCE FILES
 # =========================================================
 
 SEASON_FILES = {
@@ -36,7 +36,7 @@ SEASON_FILES = {
 }
 
 
-NUMERIC_COLUMNS = [
+RAW_NUMERIC = [
     "minutes_played",
     "goals",
     "assists",
@@ -60,11 +60,23 @@ NUMERIC_COLUMNS = [
 ]
 
 
+# These are not available for every historical season.
+PARTIAL_COVERAGE = [
+    "xg",
+    "xa",
+    "touches_opposition_box",
+]
+
+
 # =========================================================
-# BASIC CALCULATION
+# CALCULATION HELPERS
 # =========================================================
 
-def rate(numerator, denominator, multiplier=1):
+def rate(
+    numerator,
+    denominator,
+    multiplier=1,
+):
 
     num = pd.to_numeric(
         numerator,
@@ -88,58 +100,9 @@ def rate(numerator, denominator, multiplier=1):
     )
 
 
-# =========================================================
-# LOAD AND PREPARE EACH SEASON
-# =========================================================
+def derive_metrics(df):
 
-@st.cache_data
-def load_season(season):
-
-    df = pd.read_csv(
-        SEASON_FILES[season]
-    ).copy()
-
-
-    for col in NUMERIC_COLUMNS:
-
-        if col not in df.columns:
-            df[col] = pd.NA
-
-        df[col] = pd.to_numeric(
-            df[col],
-            errors="coerce",
-        )
-
-
-    df["season"] = season
-
-
-    # -----------------------------------------------------
-    # KNOWN HISTORICAL DATA GAPS
-    # -----------------------------------------------------
-
-    # 2021/22 source does not contain xG or xA.
-    if season == "2021/22":
-
-        df["xg"] = float("nan")
-        df["xa"] = float("nan")
-
-
-    # Our historical source does not contain opposition-box
-    # touches for 2021/22 through 2024/25.
-    if season in {
-        "2021/22",
-        "2022/23",
-        "2023/24",
-        "2024/25",
-    }:
-
-        df["touches_opposition_box"] = float("nan")
-
-
-    # -----------------------------------------------------
-    # TOTALS
-    # -----------------------------------------------------
+    df = df.copy()
 
     df["goal_involvements"] = (
         df["goals"]
@@ -150,7 +113,6 @@ def load_season(season):
         df["xg"]
         + df["xa"]
     )
-
 
     mins = df["minutes_played"]
     touches = df["touches"]
@@ -288,7 +250,7 @@ def load_season(season):
 
 
     # =====================================================
-    # EFFICIENCY / QUALITY
+    # EFFICIENCY
     # =====================================================
 
     df["shot_accuracy_pct"] = rate(
@@ -297,19 +259,16 @@ def load_season(season):
         100,
     )
 
-
     df["goal_conversion_pct"] = rate(
         df["goals"],
         shots,
         100,
     )
 
-
     df["xG_per_shot"] = rate(
         df["xg"],
         shots,
     )
-
 
     df["tackle_success_pct"] = rate(
         df["tackles_won"],
@@ -317,22 +276,22 @@ def load_season(season):
         100,
     )
 
-
     df["duel_win_pct"] = rate(
+
         df["duels_won"],
+
         (
             df["duels_won"]
             + df["duels_lost"]
         ),
+
         100,
     )
-
 
     df["goals_minus_xG"] = (
         df["goals"]
         - df["xg"]
     )
-
 
     df["goals_minus_xG_per_90"] = rate(
         df["goals_minus_xG"],
@@ -340,125 +299,288 @@ def load_season(season):
         90,
     )
 
-
     df["goals_minus_xG_per_100_touches"] = rate(
         df["goals_minus_xG"],
         touches,
         100,
     )
 
+    return df
+
+
+# =========================================================
+# LOAD INDIVIDUAL SEASONS
+# =========================================================
+
+@st.cache_data
+def load_raw_season(season):
+
+    df = pd.read_csv(
+        SEASON_FILES[season]
+    ).copy()
+
+
+    for col in RAW_NUMERIC:
+
+        if col not in df.columns:
+            df[col] = pd.NA
+
+        df[col] = pd.to_numeric(
+            df[col],
+            errors="coerce",
+        )
+
+
+    # 2021/22 has no xG/xA in our source.
+
+    if season == "2021/22":
+
+        df["xg"] = float("nan")
+        df["xa"] = float("nan")
+
+
+    # Historical source has no opposition-box touches
+    # before 2025/26.
+
+    if season in {
+        "2021/22",
+        "2022/23",
+        "2023/24",
+        "2024/25",
+    }:
+
+        df[
+            "touches_opposition_box"
+        ] = float("nan")
+
+
+    df["season"] = season
+
+    df["web_name"] = (
+        df["web_name"]
+        .astype(str)
+    )
+
+    df["position"] = (
+        df["position"]
+        .astype(str)
+    )
 
     return df
 
 
 # =========================================================
-# LOAD ALL SEASONS
+# MULTI-SEASON AGGREGATION
 # =========================================================
 
-DATA = {
+def period_label(seasons):
 
-    season:
-        load_season(season)
-
-    for season
-    in SEASON_FILES
-}
-
-
-# =========================================================
-# HELPERS
-# =========================================================
-
-def has_data(frame, column):
-
-    return (
-        column in frame.columns
-        and frame[column].notna().any()
+    return " + ".join(
+        seasons
     )
 
 
-def players_for(season):
+@st.cache_data
+def aggregate_period(
+    seasons_tuple
+):
 
-    return sorted(
-
-        DATA[season]["web_name"]
-        .dropna()
-        .astype(str)
-        .unique()
+    seasons = list(
+        seasons_tuple
     )
 
 
-def preferred_index(
-    options,
-    preferred_names,
-):
+    frames = [
 
-    for name in preferred_names:
-
-        if name in options:
-            return options.index(name)
-
-    return 0
-
-
-def player_row(
-    season,
-    player,
-):
-
-    return DATA[season][
-
-        DATA[season]["web_name"]
-        .astype(str)
-        == player
-
-    ].iloc[0]
-
-
-def profile_label(profile):
-
-    return (
-        f'{profile["player"]} · '
-        f'{profile["season"]}'
-    )
-
-
-def season_max_minutes(season):
-
-    value = pd.to_numeric(
-
-        DATA[season][
-            "minutes_played"
-        ],
-
-        errors="coerce",
-
-    ).max()
-
-
-    if pd.isna(value):
-
-        return 0.0
-
-
-    return float(value)
-
-
-def peer_min_minutes(
-    season,
-    percentage,
-):
-
-    return (
-
-        season_max_minutes(
+        load_raw_season(
             season
         )
 
-        * percentage
+        for season
+        in seasons
+    ]
 
-        / 100
+
+    combined = pd.concat(
+        frames,
+        ignore_index=True,
     )
+
+
+    # -----------------------------------------------------
+    # SUM THE RAW TOTALS FIRST
+    # -----------------------------------------------------
+
+    totals = (
+
+        combined
+        .groupby(
+            "web_name",
+            as_index=False,
+        )[RAW_NUMERIC]
+        .sum(
+            min_count=1
+        )
+    )
+
+
+    # -----------------------------------------------------
+    # ASSIGN DOMINANT POSITION
+    #
+    # If a player's listed position changed between seasons,
+    # use the position in which he played most minutes.
+    # -----------------------------------------------------
+
+    pos_minutes = (
+
+        combined
+        .groupby(
+            [
+                "web_name",
+                "position",
+            ],
+            as_index=False,
+        )[
+            "minutes_played"
+        ]
+        .sum(
+            min_count=1
+        )
+        .sort_values(
+            [
+                "web_name",
+                "minutes_played",
+            ],
+            ascending=[
+                True,
+                False,
+            ],
+        )
+        .drop_duplicates(
+            "web_name"
+        )[
+            [
+                "web_name",
+                "position",
+            ]
+        ]
+    )
+
+
+    totals = totals.merge(
+        pos_minutes,
+        on="web_name",
+        how="left",
+    )
+
+
+    # -----------------------------------------------------
+    # COUNT HOW MANY OF THE SELECTED SEASONS EACH PLAYER
+    # ACTUALLY PLAYED IN
+    # -----------------------------------------------------
+
+    represented = (
+
+        combined.loc[
+            combined[
+                "minutes_played"
+            ].fillna(0) > 0
+        ]
+        .groupby(
+            "web_name"
+        )[
+            "season"
+        ]
+        .nunique()
+    )
+
+
+    totals[
+        "seasons_represented"
+    ] = (
+
+        totals[
+            "web_name"
+        ]
+        .map(
+            represented
+        )
+        .fillna(0)
+    )
+
+
+    totals[
+        "selected_season_count"
+    ] = len(
+        seasons
+    )
+
+
+    # -----------------------------------------------------
+    # DON'T CREATE PARTIAL xG / xA / BOX-TOUCH SAMPLES
+    #
+    # If ANY season in a grouped period lacks a metric,
+    # hide that metric for the whole period.
+    # -----------------------------------------------------
+
+    for col in PARTIAL_COVERAGE:
+
+        missing_season = any(
+
+            load_raw_season(
+                season
+            )[col]
+            .notna()
+            .sum()
+            == 0
+
+            for season
+            in seasons
+        )
+
+
+        if missing_season:
+
+            totals[
+                col
+            ] = float(
+                "nan"
+            )
+
+
+    totals[
+        "period"
+    ] = period_label(
+        seasons
+    )
+
+
+    # -----------------------------------------------------
+    # ONLY NOW CALCULATE PER-90 / PER-TOUCH METRICS
+    # -----------------------------------------------------
+
+    return derive_metrics(
+        totals
+    )
+
+
+# =========================================================
+# SMALL HELPERS
+# =========================================================
+
+def player_row(
+    period_df,
+    player,
+):
+
+    return period_df.loc[
+
+        period_df[
+            "web_name"
+        ]
+        == player
+
+    ].iloc[0]
 
 
 def fmt(
@@ -484,15 +606,37 @@ def fmt(
     )
 
 
+def has_data(
+    frame,
+    column,
+):
+
+    return (
+
+        column
+        in frame.columns
+
+        and
+
+        frame[
+            column
+        ]
+        .notna()
+        .any()
+    )
+
+
 def percentile_rank(
-    player_value,
+    value,
     peer_values,
     lower_is_better=False,
 ):
 
-    if pd.isna(player_value):
+    if pd.isna(value):
 
-        return float("nan")
+        return float(
+            "nan"
+        )
 
 
     peers = pd.to_numeric(
@@ -503,11 +647,13 @@ def percentile_rank(
 
     if peers.empty:
 
-        return float("nan")
+        return float(
+            "nan"
+        )
 
 
     value = float(
-        player_value
+        value
     )
 
 
@@ -540,25 +686,26 @@ def percentile_rank(
             * equal
         )
 
-        / len(peers)
+        / len(
+            peers
+        )
 
         * 100
     )
 
 
 # =========================================================
-# PLAYER-SEASON SELECTION
+# PROFILE SELECTION
 # =========================================================
 
 st.header(
-    "Compare player-seasons"
+    "Compare player periods"
 )
 
 
 st.caption(
-    "Choose different players across different seasons, "
-    "or select the same player in several seasons to compare "
-    "different versions of the same player."
+    "Choose one season for a normal season comparison, "
+    "or select several seasons to create one combined player sample."
 )
 
 
@@ -575,41 +722,49 @@ compare_count = st.radio(
 )
 
 
-slot_columns = st.columns(
-    compare_count
-)
+defaults = [
 
+    (
+        [
+            "2025/26"
+        ],
 
-default_seasons = [
+        [
+            "Haaland",
+            "Erling Haaland",
+        ],
+    ),
 
-    "2025/26",
+    (
+        [
+            "2025/26"
+        ],
 
-    "2025/26",
+        [
+            "Gyökeres",
+            "Viktor Gyökeres",
+        ],
+    ),
 
-    "2024/25",
-]
+    (
+        [
+            "2023/24",
+            "2024/25",
+        ],
 
-
-default_players = [
-
-    [
-        "Haaland",
-        "Erling Haaland",
-    ],
-
-    [
-        "Gyökeres",
-        "Viktor Gyökeres",
-    ],
-
-    [
-        "Salah",
-        "Mohamed Salah",
-    ],
+        [
+            "Salah",
+            "Mohamed Salah",
+        ],
+    ),
 ]
 
 
 profiles = []
+
+slot_columns = st.columns(
+    compare_count
+)
 
 
 for i in range(
@@ -618,288 +773,206 @@ for i in range(
 
     with slot_columns[i]:
 
-        season_options = list(
-            SEASON_FILES.keys()
+        chosen_seasons = st.multiselect(
+
+            f"Season(s) {i + 1}",
+
+            list(
+                SEASON_FILES
+            ),
+
+            default=defaults[
+                i
+            ][0],
+
+            key=(
+                f"period_seasons_"
+                f"{i}"
+            ),
         )
 
 
-        season_default = (
-            default_seasons[i]
-        )
+        if not chosen_seasons:
 
-
-        season_index = (
-
-            season_options.index(
-                season_default
+            st.warning(
+                "Choose at least one season."
             )
 
-            if season_default
-            in season_options
+            st.stop()
 
-            else 0
+
+        period_df = aggregate_period(
+            tuple(
+                chosen_seasons
+            )
         )
 
 
-        season = st.selectbox(
+        options = sorted(
 
-            f"Season {i + 1}",
-
-            season_options,
-
-            index=season_index,
-
-            key=f"profile_season_{i}",
+            period_df[
+                "web_name"
+            ]
+            .dropna()
+            .astype(str)
+            .unique()
         )
 
 
-        options = players_for(
-            season
-        )
+        player_index = 0
 
 
-        p_index = preferred_index(
+        for preferred in defaults[
+            i
+        ][1]:
 
-            options,
+            if preferred in options:
 
-            default_players[i],
-        )
+                player_index = (
+                    options.index(
+                        preferred
+                    )
+                )
+
+                break
 
 
-        player = st.selectbox(
+        chosen_player = st.selectbox(
 
             f"Player {i + 1}",
 
             options,
 
-            index=p_index,
+            index=player_index,
 
             key=(
-                f"profile_player_"
-                f"{i}_{season}"
+                f"period_player_"
+                f"{i}_"
+                f"{'_'.join(chosen_seasons)}"
             ),
         )
 
 
         row = player_row(
-            season,
-            player,
+            period_df,
+            chosen_player,
         )
 
 
         profiles.append(
 
             {
-                "season":
-                    season,
+                "seasons":
+                    chosen_seasons,
+
+                "period":
+                    period_label(
+                        chosen_seasons
+                    ),
+
+                "df":
+                    period_df,
 
                 "player":
-                    player,
+                    chosen_player,
 
                 "row":
                     row,
 
                 "position":
                     str(
-                        row["position"]
+                        row[
+                            "position"
+                        ]
                     ),
             }
         )
 
 
+        st.caption(
+
+            f'{int(row["seasons_represented"])} '
+            f'of {len(chosen_seasons)} selected seasons represented · '
+            f'{fmt(row["minutes_played"], integer=True)} minutes'
+        )
+
+
 # =========================================================
-# PEER SAMPLE SIZE
+# PEER SAMPLE
 # =========================================================
 
 sample_pct = st.slider(
 
     "Minimum sample for peer groups "
-    "(% of season maximum minutes)",
+    "(% of maximum minutes in each selected period)",
 
-    min_value=0,
+    0,
 
-    max_value=100,
+    100,
 
-    value=25,
+    25,
 
-    step=5,
-)
-
-
-selected_seasons = list(
-
-    dict.fromkeys(
-
-        p["season"]
-
-        for p in profiles
-    )
+    5,
 )
 
 
 threshold_text = []
 
 
-for season in selected_seasons:
+for profile in profiles:
+
+    max_mins = pd.to_numeric(
+
+        profile[
+            "df"
+        ][
+            "minutes_played"
+        ],
+
+        errors="coerce",
+
+    ).max()
+
+
+    if (
+        pd.isna(max_mins)
+        or max_mins <= 0
+    ):
+
+        threshold = 0
+
+    else:
+
+        threshold = (
+
+            max_mins
+            * sample_pct
+            / 100
+        )
+
+
+    profile[
+        "threshold"
+    ] = threshold
+
 
     threshold_text.append(
 
-        f"{season}: "
-        f"{peer_min_minutes(season, sample_pct):.0f}+ min"
+        f'{profile["period"]}: '
+        f'{threshold:.0f}+ min'
     )
 
 
 st.caption(
 
-    "Peer-group thresholds — "
+    "Peer thresholds — "
 
     + " · ".join(
-        threshold_text
+        dict.fromkeys(
+            threshold_text
+        )
     )
 )
-
-
-# =========================================================
-# DATA AVAILABILITY NOTES
-# =========================================================
-
-notes = []
-
-
-if "2021/22" in selected_seasons:
-
-    notes.append(
-
-        "2021/22 has no xG, xA or opposition-box-touch "
-        "data in our source."
-    )
-
-
-if any(
-
-    season in {
-
-        "2022/23",
-
-        "2023/24",
-
-        "2024/25",
-
-    }
-
-    for season
-    in selected_seasons
-):
-
-    notes.append(
-
-        "Opposition-box touches are unavailable in our "
-        "historical source for 2022/23–2024/25."
-    )
-
-
-if notes:
-
-    st.info(
-        " ".join(notes)
-    )
-
-
-# =========================================================
-# TABLE HELPER
-# =========================================================
-
-def make_table(specs):
-
-    rows = []
-
-
-    for (
-
-        label,
-
-        column,
-
-        decimals,
-
-        integer,
-
-    ) in specs:
-
-
-        values = []
-
-
-        for profile in profiles:
-
-            row = (
-                profile["row"]
-            )
-
-
-            value = (
-
-                row[column]
-
-                if column
-                in row.index
-
-                else pd.NA
-            )
-
-
-            values.append(
-                value
-            )
-
-
-        if all(
-
-            pd.isna(v)
-
-            for v in values
-        ):
-
-            continue
-
-
-        result = {
-
-            "Metric":
-                label
-        }
-
-
-        for (
-            profile,
-            value,
-        ) in zip(
-            profiles,
-            values,
-        ):
-
-            result[
-                profile_label(
-                    profile
-                )
-            ] = fmt(
-
-                value,
-
-                decimals=decimals,
-
-                integer=integer,
-            )
-
-
-        rows.append(
-            result
-        )
-
-
-    return pd.DataFrame(
-        rows
-    )
 
 
 # =========================================================
@@ -907,6 +980,13 @@ def make_table(specs):
 # =========================================================
 
 OVERVIEW = [
+
+    (
+        "Seasons represented",
+        "seasons_represented",
+        0,
+        True,
+    ),
 
     (
         "Minutes",
@@ -1243,7 +1323,7 @@ PER90_TABLE = [
 ]
 
 
-PER_TOUCH_TABLE = [
+PER100_TABLE = [
 
     (
         "Goals / 100 touches",
@@ -1339,15 +1419,99 @@ PER_TOUCH_TABLE = [
 
 
 # =========================================================
-# COMPARISON TABLES
+# COMPARISON TABLE
 # =========================================================
+
+def make_table(
+    specs
+):
+
+    rows = []
+
+
+    for (
+        label,
+        col,
+        decimals,
+        integer,
+    ) in specs:
+
+        values = [
+
+            profile[
+                "row"
+            ].get(
+                col,
+                pd.NA,
+            )
+
+            for profile
+            in profiles
+        ]
+
+
+        if all(
+
+            pd.isna(
+                value
+            )
+
+            for value
+            in values
+        ):
+
+            continue
+
+
+        item = {
+            "Metric":
+                label
+        }
+
+
+        for (
+            profile,
+            value,
+        ) in zip(
+            profiles,
+            values,
+        ):
+
+            name = (
+
+                f'{profile["player"]} · '
+                f'{profile["period"]}'
+            )
+
+
+            item[
+                name
+            ] = fmt(
+
+                value,
+
+                decimals,
+
+                integer,
+            )
+
+
+        rows.append(
+            item
+        )
+
+
+    return pd.DataFrame(
+        rows
+    )
+
 
 st.header(
     "Comparison"
 )
 
 
-tab_overview, tab_per90, tab_touch = st.tabs(
+tab1, tab2, tab3 = st.tabs(
 
     [
         "Overview",
@@ -1357,7 +1521,7 @@ tab_overview, tab_per90, tab_touch = st.tabs(
 )
 
 
-with tab_overview:
+with tab1:
 
     st.dataframe(
 
@@ -1371,7 +1535,7 @@ with tab_overview:
     )
 
 
-with tab_per90:
+with tab2:
 
     st.dataframe(
 
@@ -1385,12 +1549,12 @@ with tab_per90:
     )
 
 
-with tab_touch:
+with tab3:
 
     st.dataframe(
 
         make_table(
-            PER_TOUCH_TABLE
+            PER100_TABLE
         ),
 
         hide_index=True,
@@ -1400,7 +1564,7 @@ with tab_touch:
 
 
 # =========================================================
-# MASTER METRIC CATALOGUE
+# GENERAL METRIC LIST
 # =========================================================
 
 METRICS = {
@@ -1524,50 +1688,61 @@ METRICS = {
 }
 
 
-def metric_common_to_selected_seasons(
-    column
-):
+# =========================================================
+# UNIQUE PERIODS
+# =========================================================
 
-    return all(
+unique_periods = {}
 
-        has_data(
-            DATA[season],
-            column,
+
+for profile in profiles:
+
+    unique_periods[
+        tuple(
+            profile[
+                "seasons"
+            ]
         )
-
-        for season
-        in selected_seasons
-    )
+    ] = profile[
+        "df"
+    ]
 
 
 COMMON_METRICS = {
 
     label:
-        column
+        col
 
     for (
         label,
-        column,
+        col,
     ) in METRICS.items()
 
-    if metric_common_to_selected_seasons(
-        column
+    if all(
+
+        has_data(
+            period_df,
+            col,
+        )
+
+        for period_df
+        in unique_periods.values()
     )
 }
 
 
 # =========================================================
-# CROSS-SEASON SCATTER
+# SCATTER
 # =========================================================
 
 st.header(
-    "Cross-season player landscape"
+    "Player landscape"
 )
 
 
 st.caption(
-    "The background contains qualified players from every season "
-    "selected above. Selected player-seasons are highlighted."
+    "For grouped seasons, every background player is also "
+    "aggregated across exactly the same group of seasons."
 )
 
 
@@ -1576,19 +1751,7 @@ metric_labels = list(
 )
 
 
-if not metric_labels:
-
-    st.warning(
-        "No common metrics are available for the selected seasons."
-    )
-
-
-else:
-
-    preferred_x = (
-        "Touches / 90"
-    )
-
+if metric_labels:
 
     preferred_y = (
 
@@ -1605,41 +1768,12 @@ else:
     )
 
 
-    x_default = (
-
-        metric_labels.index(
-            preferred_x
-        )
-
-        if preferred_x
-        in metric_labels
-
-        else 0
-    )
-
-
-    y_default = (
-
-        metric_labels.index(
-            preferred_y
-        )
-
-        if preferred_y
-        in metric_labels
-
-        else min(
-            1,
-            len(metric_labels) - 1,
-        )
-    )
-
-
-    sc1, sc2, sc3 = st.columns(
+    c1, c2, c3 = st.columns(
         3
     )
 
 
-    with sc1:
+    with c1:
 
         x_label = st.selectbox(
 
@@ -1647,13 +1781,23 @@ else:
 
             metric_labels,
 
-            index=x_default,
+            index=(
 
-            key="cross_x",
+                metric_labels.index(
+                    "Touches / 90"
+                )
+
+                if (
+                    "Touches / 90"
+                    in metric_labels
+                )
+
+                else 0
+            ),
         )
 
 
-    with sc2:
+    with c2:
 
         y_label = st.selectbox(
 
@@ -1661,23 +1805,38 @@ else:
 
             metric_labels,
 
-            index=y_default,
+            index=(
 
-            key="cross_y",
+                metric_labels.index(
+                    preferred_y
+                )
+
+                if preferred_y
+                in metric_labels
+
+                else min(
+                    1,
+                    len(
+                        metric_labels
+                    ) - 1,
+                )
+            ),
         )
 
 
-    positions = sorted(
+    all_positions = sorted(
 
         {
 
-            str(pos)
+            str(
+                pos
+            )
 
-            for season
-            in selected_seasons
+            for period_df
+            in unique_periods.values()
 
             for pos
-            in DATA[season][
+            in period_df[
                 "position"
             ]
             .dropna()
@@ -1686,20 +1845,24 @@ else:
     )
 
 
-    default_position = (
-        profiles[0]["position"]
-    )
-
-
     position_options = [
 
         "All positions",
 
-        *positions,
+        *all_positions,
     ]
 
 
-    with sc3:
+    with c3:
+
+        default_position = (
+            profiles[
+                0
+            ][
+                "position"
+            ]
+        )
+
 
         position_filter = st.selectbox(
 
@@ -1718,8 +1881,6 @@ else:
 
                 else 0
             ),
-
-            key="cross_position",
         )
 
 
@@ -1737,28 +1898,55 @@ else:
     )
 
 
-    landscape_frames = []
+    frames = []
 
 
-    for season in selected_seasons:
+    for (
+        seasons_tuple,
+        period_df,
+    ) in unique_periods.items():
 
-        frame = DATA[
-            season
-        ].copy()
+        period = period_label(
+            list(
+                seasons_tuple
+            )
+        )
 
 
-        frame = frame[
+        max_mins = pd.to_numeric(
 
-            frame[
+            period_df[
+                "minutes_played"
+            ],
+
+            errors="coerce",
+
+        ).max()
+
+
+        if (
+            pd.isna(max_mins)
+            or max_mins <= 0
+        ):
+
+            threshold = 0
+
+        else:
+
+            threshold = (
+
+                max_mins
+                * sample_pct
+                / 100
+            )
+
+
+        frame = period_df.loc[
+
+            period_df[
                 "minutes_played"
             ]
-
-            >=
-
-            peer_min_minutes(
-                season,
-                sample_pct,
-            )
+            >= threshold
 
         ].copy()
 
@@ -1768,7 +1956,7 @@ else:
             != "All positions"
         ):
 
-            frame = frame[
+            frame = frame.loc[
 
                 frame[
                     "position"
@@ -1782,34 +1970,34 @@ else:
             ].copy()
 
 
-        max_minutes = (
-            season_max_minutes(
-                season
-            )
-        )
+        frame[
+            "period_label"
+        ] = period
 
 
-        if max_minutes > 0:
+        if (
+            pd.isna(max_mins)
+            or max_mins <= 0
+        ):
 
             frame[
-                "season_minutes_share"
+                "minutes_share"
+            ] = 0
+
+        else:
+
+            frame[
+                "minutes_share"
             ] = (
 
                 frame[
                     "minutes_played"
                 ]
 
-                / max_minutes
+                / max_mins
 
                 * 100
             )
-
-
-        else:
-
-            frame[
-                "season_minutes_share"
-            ] = 0
 
 
         frame[
@@ -1819,22 +2007,21 @@ else:
             frame[
                 "web_name"
             ]
-            .astype(str)
 
             + " · "
 
-            + season
+            + period
         )
 
 
-        landscape_frames.append(
+        frames.append(
             frame
         )
 
 
     landscape = pd.concat(
 
-        landscape_frames,
+        frames,
 
         ignore_index=True,
     )
@@ -1870,9 +2057,9 @@ else:
             "assists",
         ],
 
-        size="season_minutes_share",
+        color="period_label",
 
-        color="season",
+        size="minutes_share",
 
         labels={
 
@@ -1882,14 +2069,16 @@ else:
             y_col:
                 y_label,
 
-            "season":
-                "Season",
+            "period_label":
+                "Period",
 
-            "season_minutes_share":
-                "Season minutes %",
+            "minutes_share":
+                "Period minutes %",
         },
     )
 
+
+    # Highlight the selected profiles.
 
     for profile in profiles:
 
@@ -1910,30 +2099,37 @@ else:
 
 
         row = (
-            profile["row"]
+            profile[
+                "row"
+            ]
         )
-
-
-        xv = row[
-            x_col
-        ]
-
-
-        yv = row[
-            y_col
-        ]
 
 
         if (
 
-            pd.isna(xv)
+            pd.isna(
+                row[
+                    x_col
+                ]
+            )
 
             or
 
-            pd.isna(yv)
+            pd.isna(
+                row[
+                    y_col
+                ]
+            )
         ):
 
             continue
+
+
+        name = (
+
+            f'{profile["player"]} · '
+            f'{profile["period"]}'
+        )
 
 
         fig_scatter.add_trace(
@@ -1941,20 +2137,21 @@ else:
             go.Scatter(
 
                 x=[
-                    xv
+                    row[
+                        x_col
+                    ]
                 ],
 
                 y=[
-                    yv
+                    row[
+                        y_col
+                    ]
                 ],
 
                 mode="markers+text",
 
                 text=[
-
-                    profile_label(
-                        profile
-                    )
+                    name
                 ],
 
                 textposition="top center",
@@ -1970,30 +2167,9 @@ else:
                     ),
                 ),
 
-                name=profile_label(
-                    profile
-                ),
+                name=name,
             )
         )
-
-
-    fig_scatter.update_layout(
-
-        margin=dict(
-
-            l=20,
-
-            r=20,
-
-            t=25,
-
-            b=20,
-        ),
-
-        legend_title_text=(
-            "Season / selected profiles"
-        ),
-    )
 
 
     st.plotly_chart(
@@ -2004,19 +2180,25 @@ else:
     )
 
 
+else:
+
+    st.warning(
+        "No common metrics are available for these periods."
+    )
+
+
 # =========================================================
 # RADAR
 # =========================================================
 
 st.header(
-    "Cross-season player profile radar"
+    "Player profile radar"
 )
 
 
 st.caption(
-    "The radar is a percentile chart. Each player-season is "
-    "ranked against players in its own season and position. "
-    "Further from the centre always means better."
+    "Each grouped player is compared with positional peers "
+    "aggregated across exactly the same selected seasons."
 )
 
 
@@ -2034,7 +2216,7 @@ radar_mode = st.radio(
 
 
 # =========================================================
-# PER 100 TOUCHES RADAR
+# PER TOUCH RADAR
 # =========================================================
 
 if (
@@ -2043,9 +2225,8 @@ if (
 ):
 
     st.info(
-        "PER 100 TOUCHES MODE — attacking and on-ball volume "
-        "metrics are divided by touches. Defensive actions remain "
-        "per 90. Percentages retain their natural units."
+        "Per 100 touches mode: attacking and on-ball volume "
+        "is measured per 100 touches. Defensive actions remain per 90."
     )
 
 
@@ -2078,13 +2259,13 @@ if (
         "Chances created / 100 touches":
             "chances_created_per_100_touches",
 
-        "Successful dribbles / 100 touches":
+        "Dribbles / 100 touches":
             "dribbles_per_100_touches",
 
         "Box touches / 100 touches":
             "box_touches_per_100_touches",
 
-        "Ball security (↓ losses / 100 touches)":
+        "Ball security (fewer losses / 100 touches)":
             "dispossessed_per_100_touches",
 
         "Touches / 90":
@@ -2144,10 +2325,6 @@ if (
         "Shots / 100 touches",
 
         "Chances created / 100 touches",
-
-        "Successful dribbles / 100 touches",
-
-        "Box touches / 100 touches",
     ]
 
 
@@ -2158,8 +2335,7 @@ if (
 else:
 
     st.info(
-        "PER 90 MODE — rate metrics are expressed per 90 minutes. "
-        "Percentages retain their natural units."
+        "Per 90 mode: volume metrics are measured per 90 minutes."
     )
 
 
@@ -2192,13 +2368,13 @@ else:
         "Chances created / 90":
             "chances_created_per_90",
 
-        "Successful dribbles / 90":
+        "Dribbles / 90":
             "dribbles_per_90",
 
         "Box touches / 90":
             "box_touches_per_90",
 
-        "Ball security (↓ losses / 90)":
+        "Ball security (fewer losses / 90)":
             "dispossessed_per_90",
 
         "Touches / 90":
@@ -2258,48 +2434,35 @@ else:
         "Shots / 90",
 
         "Chances created / 90",
-
-        "Successful dribbles / 90",
-
-        "Box touches / 90",
     ]
 
 
 # =========================================================
-# HIDE METRICS MISSING FROM ANY SELECTED SEASON
+# REMOVE METRICS MISSING FROM ANY SELECTED PERIOD
 # =========================================================
 
 RADAR = {
 
     label:
-        column
+        col
 
     for (
         label,
-        column,
+        col,
     ) in RADAR_CANDIDATES.items()
 
-    if metric_common_to_selected_seasons(
-        column
+    if all(
+
+        has_data(
+            period_df,
+            col,
+        )
+
+        for period_df
+        in unique_periods.values()
     )
 }
 
-
-# =========================================================
-# LOWER IS BETTER
-# =========================================================
-
-LOWER_IS_BETTER_COLUMNS = {
-
-    "dispossessed_per_90",
-
-    "dispossessed_per_100_touches",
-}
-
-
-# =========================================================
-# DEFAULT RADAR SELECTION
-# =========================================================
 
 default_radar = [
 
@@ -2308,7 +2471,8 @@ default_radar = [
     for metric
     in preferred_radar
 
-    if metric in RADAR
+    if metric
+    in RADAR
 ]
 
 
@@ -2321,10 +2485,7 @@ for metric in RADAR:
         break
 
 
-    if (
-        metric
-        not in default_radar
-    ):
+    if metric not in default_radar:
 
         default_radar.append(
             metric
@@ -2344,10 +2505,18 @@ selected_radar = st.multiselect(
     max_selections=12,
 
     key=(
-        f"radar_metrics_"
+        f"radar_"
         f"{radar_mode}"
     ),
 )
+
+
+LOWER_IS_BETTER = {
+
+    "dispossessed_per_90",
+
+    "dispossessed_per_100_touches",
+}
 
 
 # =========================================================
@@ -2369,14 +2538,12 @@ else:
 
 
     raw_table = {
-
         "Metric":
             selected_radar
     }
 
 
     percentile_table = {
-
         "Metric":
             selected_radar
     }
@@ -2384,77 +2551,71 @@ else:
 
     for profile in profiles:
 
-        season = (
-            profile["season"]
-        )
-
-
         row = (
-            profile["row"]
+            profile[
+                "row"
+            ]
         )
 
 
-        position = (
-            profile["position"]
+        period_df = (
+            profile[
+                "df"
+            ]
         )
 
 
-        frame = DATA[
-            season
-        ]
-
-
-        threshold = (
-            peer_min_minutes(
-                season,
-                sample_pct,
-            )
-        )
-
-
-        peers = frame[
+        peers = period_df.loc[
 
             (
-                frame[
+                period_df[
                     "position"
                 ]
                 .astype(str)
 
                 ==
 
-                position
+                profile[
+                    "position"
+                ]
             )
 
             &
 
             (
-                frame[
+                period_df[
                     "minutes_played"
                 ]
 
                 >=
 
-                threshold
+                profile[
+                    "threshold"
+                ]
             )
 
         ].copy()
 
 
-        percentiles = []
+        values = []
 
-        actual_values = []
+        percentiles = []
 
 
         for metric_label in selected_radar:
 
-            column = RADAR[
-                metric_label
-            ]
+            col = (
+                RADAR[
+                    metric_label
+                ]
+            )
 
 
-            value = row[
-                column
-            ]
+            value = (
+                row[
+                    col
+                ]
+            )
 
 
             percentile = percentile_rank(
@@ -2462,27 +2623,19 @@ else:
                 value,
 
                 peers[
-                    column
+                    col
                 ],
 
                 lower_is_better=(
 
-                    column
-
-                    in
-
-                    LOWER_IS_BETTER_COLUMNS
+                    col
+                    in LOWER_IS_BETTER
                 ),
             )
 
 
-            actual_value = (
-
-                float(value)
-
-                if pd.notna(value)
-
-                else float("nan")
+            values.append(
+                value
             )
 
 
@@ -2491,41 +2644,38 @@ else:
             )
 
 
-            actual_values.append(
-                actual_value
-            )
+        name = (
 
-
-        display_name = (
-            profile_label(
-                profile
-            )
+            f'{profile["player"]} · '
+            f'{profile["period"]}'
         )
 
 
         raw_table[
-            display_name
+            name
         ] = [
 
             fmt(
                 value,
-                decimals=2,
-                integer=False,
+                2,
+                False,
             )
 
             for value
-            in actual_values
+            in values
         ]
 
 
         percentile_table[
-            display_name
+            name
         ] = [
 
             (
                 "—"
 
-                if pd.isna(value)
+                if pd.isna(
+                    value
+                )
 
                 else f"{value:.0f}"
             )
@@ -2545,9 +2695,9 @@ else:
 
                 fill="toself",
 
-                name=display_name,
+                name=name,
 
-                customdata=actual_values,
+                customdata=values,
 
                 hovertemplate=(
 
@@ -2567,10 +2717,6 @@ else:
         )
 
 
-    # =====================================================
-    # RADAR APPEARANCE
-    # =====================================================
-
     fig_radar.update_layout(
 
         title=dict(
@@ -2584,7 +2730,6 @@ else:
             x=0.5,
         ),
 
-
         polar=dict(
 
             radialaxis=dict(
@@ -2597,50 +2742,18 @@ else:
                 ],
 
                 tickvals=[
-
                     20,
-
                     40,
-
                     60,
-
                     80,
-
                     100,
-                ],
-
-                ticktext=[
-
-                    "20th",
-
-                    "40th",
-
-                    "60th",
-
-                    "80th",
-
-                    "100th",
                 ],
             )
         ),
 
-
-        showlegend=True,
-
-
         height=760,
 
-
-        margin=dict(
-
-            l=70,
-
-            r=70,
-
-            t=90,
-
-            b=70,
-        ),
+        showlegend=True,
     )
 
 
@@ -2652,81 +2765,41 @@ else:
     )
 
 
-    st.caption(
-        "Changing Per 90 ↔ Per 100 touches changes the raw "
-        "statistic used to calculate each percentile. The polygon "
-        "can still look similar when a player ranks similarly "
-        "against his positional peers under both measures."
+    raw_tab, percentile_tab = st.tabs(
+
+        [
+            "Raw values used",
+            "Percentiles drawn",
+        ]
     )
 
 
-    # =====================================================
-    # EXACT RADAR NUMBERS
-    # =====================================================
+    with raw_tab:
 
-    show_numbers = st.checkbox(
+        st.dataframe(
 
-        "Show the exact numbers behind the radar",
+            pd.DataFrame(
+                raw_table
+            ),
 
-        value=True,
-    )
+            hide_index=True,
 
-
-    if show_numbers:
-
-        number_tab, percentile_tab = st.tabs(
-
-            [
-
-                f"Raw values · {radar_mode}",
-
-                "Percentiles drawn on radar",
-            ]
+            width="stretch",
         )
 
 
-        with number_tab:
+    with percentile_tab:
 
-            st.dataframe(
+        st.dataframe(
 
-                pd.DataFrame(
-                    raw_table
-                ),
+            pd.DataFrame(
+                percentile_table
+            ),
 
-                hide_index=True,
+            hide_index=True,
 
-                width="stretch",
-            )
-
-
-            st.caption(
-
-                "These are the actual values being used by the "
-                f"{radar_mode} radar. For Ball security, the "
-                "underlying value is ball losses, so lower is better."
-            )
-
-
-        with percentile_tab:
-
-            st.dataframe(
-
-                pd.DataFrame(
-                    percentile_table
-                ),
-
-                hide_index=True,
-
-                width="stretch",
-            )
-
-
-            st.caption(
-
-                "These 0–100 percentile values are the numbers "
-                "that determine the distance from the centre "
-                "of the radar."
-            )
+            width="stretch",
+        )
 
 
 # =========================================================
@@ -2737,19 +2810,18 @@ st.divider()
 
 
 with st.expander(
-    "How to read the comparisons"
+    "How grouped seasons work"
 ):
 
     st.markdown(
         """
-- **Per 90** measures production or activity during a standard 90 minutes.
-- **Per 100 touches** measures how much a player produces when he is actually involved with the ball.
-- **Touches / 90** shows how involved the player is, so it is useful alongside per-touch efficiency.
-- The radar itself displays **percentile rank**, not the raw statistic.
-- Radar percentiles are calculated against players in the **same position and same season** who pass the sample threshold.
-- **100th percentile means better** and further from the centre is always better.
-- **Ball security is reversed**: fewer dispossessions produces a higher percentile.
-- Defensive actions remain **per 90** in the per-touch radar because the player's own touches are not a sensible denominator for defensive opportunities.
-- Because the radar shows ranks, a player's shape can sometimes remain fairly similar between Per 90 and Per 100 touches even though the underlying numbers have changed.
+- Select **one season** for a normal single-season profile.
+- Select **two or more seasons** for a combined multi-season profile.
+- Raw totals are **summed first** and the rates are then recalculated.
+- Seasonal per-90 figures are **not averaged**.
+- The radar peer population uses the **same group of seasons** as the selected player.
+- A player's comparison position is the position in which he played the most minutes over the selected period.
+- The app tells you how many of the selected seasons the player actually appeared in.
+- If one season in the group lacks xG, xA or box-touch data, that metric is hidden rather than calculated from an incomplete period.
 """
     )

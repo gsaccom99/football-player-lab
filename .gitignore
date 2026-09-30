@@ -165,3 +165,7 @@ cython_debug/
 historical-pl/
 historical-source/
 google-chrome-stable_current_amd64.deb
+data-source/
+understat_big5_2025_26.csv
+build_understat_big5.py
+build_data.py

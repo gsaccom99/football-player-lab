@@ -1,0 +1,63 @@
+name: Refresh current Premier League data
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    - cron: "17 7 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout Football Player Lab
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install refresh dependency
+        run: |
+          python -m pip install pandas numpy
+
+      - name: Download latest FPL Core Insights
+        run: |
+          git clone \
+            --depth 1 \
+            https://github.com/olbauday/FPL-Core-Insights.git \
+            /tmp/fpl-core-insights
+
+      - name: Rebuild 2026-27 Premier League dataset
+        run: |
+          python scripts/refresh_pl_current.py \
+            --source-dir /tmp/fpl-core-insights \
+            --source-season 2026-2027 \
+            --season-label 2026/27 \
+            --output premier_league_2026_27.csv \
+            --metadata data_freshness.json
+
+      - name: Commit updated data if necessary
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add \
+            premier_league_2026_27.csv \
+            data_freshness.json
+
+          if git diff --cached --quiet; then
+            echo "No Premier League data change."
+            exit 0
+          fi
+
+          git commit -m "Refresh 2026-27 Premier League data"
+
+          git pull --rebase
+          git push

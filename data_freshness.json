@@ -1,0 +1,18 @@
+{
+  "season": "2026/27",
+  "competition": "Premier League",
+  "latest_gameweek": 6,
+  "gameweeks_included": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "matches": 60,
+  "players": 508,
+  "source": "olbauday/FPL-Core-Insights",
+  "source_commit": "b5eb7123b7cb431d06b14d323e02afbfa91205eb",
+  "source_updated_at": "2026-10-14T12:59:11Z"
+}

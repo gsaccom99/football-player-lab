@@ -2,6 +2,9 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
+from app_helpers import install_player_search, show_pl_freshness
+
+install_player_search()
 
 
 # =========================================================
@@ -15,6 +18,8 @@ st.set_page_config(
 )
 
 st.title("⚽ Football Player Lab")
+
+show_pl_freshness()
 
 st.write(
     "Compare Premier League players across individual seasons "

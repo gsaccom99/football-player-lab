@@ -1,0 +1,124 @@
+{
+  "source": "olbauday/FPL-Core-Insights",
+  "source_commit": "27bb1bb660cb73ac439b072f0755a97f71ccc8f2",
+  "source_updated_at": "2026-11-05T03:38:42Z",
+  "competitions": [
+    {
+      "season": "2025/26",
+      "competition": "Champions League",
+      "latest_source_bucket": 36,
+      "finished_matches": 64,
+      "matches_with_player_stats": 64,
+      "coverage_pct": 100.0,
+      "players": 158
+    },
+    {
+      "season": "2025/26",
+      "competition": "Conference League",
+      "latest_source_bucket": 36,
+      "finished_matches": 13,
+      "matches_with_player_stats": 13,
+      "coverage_pct": 100.0,
+      "players": 28
+    },
+    {
+      "season": "2025/26",
+      "competition": "EFL Cup",
+      "latest_source_bucket": 32,
+      "finished_matches": 38,
+      "matches_with_player_stats": 38,
+      "coverage_pct": 100.0,
+      "players": 390
+    },
+    {
+      "season": "2025/26",
+      "competition": "Europa League",
+      "latest_source_bucket": 38,
+      "finished_matches": 26,
+      "matches_with_player_stats": 26,
+      "coverage_pct": 100.0,
+      "players": 54
+    },
+    {
+      "season": "2025/26",
+      "competition": "Premier League",
+      "latest_source_bucket": 38,
+      "finished_matches": 380,
+      "matches_with_player_stats": 380,
+      "coverage_pct": 100.0,
+      "players": 565
+    },
+    {
+      "season": "2026/27",
+      "competition": "Champions League",
+      "latest_source_bucket": 10,
+      "finished_matches": 18,
+      "matches_with_player_stats": 18,
+      "coverage_pct": 100.0,
+      "players": 125
+    },
+    {
+      "season": "2026/27",
+      "competition": "Community Shield",
+      "latest_source_bucket": 0,
+      "finished_matches": 1,
+      "matches_with_player_stats": 1,
+      "coverage_pct": 100.0,
+      "players": 40
+    },
+    {
+      "season": "2026/27",
+      "competition": "Conference League",
+      "latest_source_bucket": 8,
+      "finished_matches": 2,
+      "matches_with_player_stats": 2,
+      "coverage_pct": 100.0,
+      "players": 23
+    },
+    {
+      "season": "2026/27",
+      "competition": "EFL Cup",
+      "latest_source_bucket": 9,
+      "finished_matches": 30,
+      "matches_with_player_stats": 30,
+      "coverage_pct": 100.0,
+      "players": 477
+    },
+    {
+      "season": "2026/27",
+      "competition": "Europa League",
+      "latest_source_bucket": 8,
+      "finished_matches": 9,
+      "matches_with_player_stats": 9,
+      "coverage_pct": 100.0,
+      "players": 63
+    },
+    {
+      "season": "2026/27",
+      "competition": "Friendlies",
+      "latest_source_bucket": 0,
+      "finished_matches": 113,
+      "matches_with_player_stats": 53,
+      "coverage_pct": 46.9,
+      "players": 416
+    },
+    {
+      "season": "2026/27",
+      "competition": "Premier League",
+      "latest_source_bucket": 9,
+      "finished_matches": 90,
+      "matches_with_player_stats": 90,
+      "coverage_pct": 100.0,
+      "players": 524
+    },
+    {
+      "season": "2026/27",
+      "competition": "Uefa Super Cup",
+      "latest_source_bucket": 0,
+      "finished_matches": 1,
+      "matches_with_player_stats": 1,
+      "coverage_pct": 100.0,
+      "players": 18
+    }
+  ]
+}

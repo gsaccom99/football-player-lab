@@ -1,7 +1,7 @@
 {
   "source": "olbauday/FPL-Core-Insights",
-  "source_commit": "27bb1bb660cb73ac439b072f0755a97f71ccc8f2",
-  "source_updated_at": "2026-11-05T03:38:42Z",
+  "source_commit": "92a90c264434ec1c7ea5e18198c71a0de1e78ae6",
+  "source_updated_at": "2026-11-06T15:16:31Z",
   "competitions": [
     {
       "season": "2025/26",
@@ -52,10 +52,10 @@
       "season": "2026/27",
       "competition": "Champions League",
       "latest_source_bucket": 10,
-      "finished_matches": 18,
-      "matches_with_player_stats": 18,
+      "finished_matches": 20,
+      "matches_with_player_stats": 20,
       "coverage_pct": 100.0,
-      "players": 125
+      "players": 126
     },
     {
       "season": "2026/27",
@@ -69,9 +69,9 @@
     {
       "season": "2026/27",
       "competition": "Conference League",
-      "latest_source_bucket": 8,
-      "finished_matches": 2,
-      "matches_with_player_stats": 2,
+      "latest_source_bucket": 10,
+      "finished_matches": 3,
+      "matches_with_player_stats": 3,
       "coverage_pct": 100.0,
       "players": 23
     },
@@ -87,11 +87,11 @@
     {
       "season": "2026/27",
       "competition": "Europa League",
-      "latest_source_bucket": 8,
-      "finished_matches": 9,
-      "matches_with_player_stats": 9,
+      "latest_source_bucket": 10,
+      "finished_matches": 12,
+      "matches_with_player_stats": 12,
       "coverage_pct": 100.0,
-      "players": 63
+      "players": 65
     },
     {
       "season": "2026/27",

@@ -1363,24 +1363,24 @@ season,competition,player_id,player_code,web_name,first_name,second_name,positio
 2026/27,Conference League,109,489639,Verbruggen,Bart,Verbruggen,Goalkeeper,36,270.0,,,,,,,,,,105.0,,,0.0,0.0,30.0,,1.0,,,
 2026/27,Conference League,111,49262,Steele,Jason,Steele,Goalkeeper,36,0.0,,,,,,,,,,,,,,,,,,,,
 2026/27,Conference League,113,231416,F.Kadıoğlu,Ferdi,Kadıoğlu,Defender,36,4.0,0.0,0.0,1.0,0.02,,0.0,,,0.0,8.0,0.0,,1.0,0.0,0.0,0.0,0.0,1.0,1.0,0.0
-2026/27,Conference League,114,204120,Boscagli,Olivier,Boscagli,Defender,36,191.0,0.0,0.0,3.0,0.1,0.7,0.0,,,2.0,230.0,6.0,,2.0,2.0,4.0,0.0,5.0,9.0,1.0,0.0
-2026/27,Conference League,115,465730,De Cuyper,Maxim,De Cuyper,Defender,36,64.0,0.0,0.0,,,0.72,,,,1.0,85.0,6.0,,1.0,1.0,3.0,0.0,1.0,2.0,2.0,0.0
-2026/27,Conference League,116,83299,Dunk,Lewis,Dunk,Defender,36,90.0,0.0,0.0,1.0,0.04,0.15000000000000002,0.0,,,1.0,113.0,1.0,,1.0,0.0,7.0,0.0,5.0,6.0,3.0,0.0
-2026/27,Conference League,119,451490,Costinha,João Pedro,Loureiro da Costa,Defender,36,270.0,0.0,1.0,7.0,0.74,0.23,1.0,,,13.0,219.0,3.0,,3.0,1.0,8.0,0.0,15.0,23.0,15.0,1.0
+2026/27,Conference League,114,204120,Boscagli,Olivier,Boscagli,Defender,36,191.0,0.0,0.0,3.0,0.1,0.7,0.0,,,2.0,230.0,6.0,,2.0,2.0,4.0,0.0,5.0,9.0,2.0,0.0
+2026/27,Conference League,115,465730,De Cuyper,Maxim,De Cuyper,Defender,36,64.0,0.0,0.0,,,0.72,,,,1.0,85.0,6.0,,1.0,1.0,3.0,0.0,1.0,2.0,3.0,0.0
+2026/27,Conference League,116,83299,Dunk,Lewis,Dunk,Defender,36,90.0,0.0,0.0,1.0,0.04,0.14,0.0,,,1.0,114.0,1.0,,1.0,0.0,7.0,0.0,6.0,7.0,3.0,0.0
+2026/27,Conference League,119,451490,Costinha,João Pedro,Loureiro da Costa,Defender,36,270.0,0.0,1.0,7.0,0.74,0.26,1.0,,,13.0,218.0,3.0,,2.0,1.0,8.0,0.0,15.0,22.0,15.0,1.0
 2026/27,Conference League,120,454490,Svoboda,Michael,Svoboda,Defender,36,270.0,0.0,0.0,2.0,0.11,0.41000000000000003,0.0,,,4.0,278.0,2.0,,4.0,3.0,22.0,0.0,10.0,11.0,17.0,0.0
-2026/27,Conference League,123,532529,Hinshelwood,Jack,Hinshelwood,Midfielder,36,215.0,1.0,0.0,8.0,0.75,0.08,4.0,,,15.0,105.0,3.0,,0.0,0.0,8.0,0.0,3.0,6.0,10.0,2.0
-2026/27,Conference League,124,60307,Groß,Pascal,Groß,Midfielder,36,195.0,0.0,0.0,3.0,0.14,0.84,1.0,,,12.0,233.0,13.0,,8.0,1.0,5.0,1.0,3.0,13.0,10.0,1.0
-2026/27,Conference League,125,463067,Georginio,Georginio,Rutter,Forward,36,269.0,2.0,1.0,11.0,1.58,0.81,5.0,,,30.0,126.0,3.0,,2.0,1.0,9.0,0.0,0.0,11.0,28.0,10.0
+2026/27,Conference League,123,532529,Hinshelwood,Jack,Hinshelwood,Midfielder,36,215.0,1.0,0.0,8.0,0.76,0.08,4.0,,,15.0,106.0,3.0,,0.0,0.0,8.0,0.0,3.0,6.0,10.0,2.0
+2026/27,Conference League,124,60307,Groß,Pascal,Groß,Midfielder,36,195.0,0.0,0.0,3.0,0.14,0.83,1.0,,,12.0,233.0,13.0,,8.0,1.0,5.0,1.0,3.0,13.0,10.0,1.0
+2026/27,Conference League,125,463067,Georginio,Georginio,Rutter,Forward,36,269.0,2.0,1.0,11.0,1.6,0.98,5.0,,,30.0,125.0,3.0,,2.0,1.0,9.0,0.0,0.0,12.0,27.0,10.0
 2026/27,Conference League,126,219249,O'Riley,Matt,O'Riley,Midfielder,36,159.0,1.0,0.0,6.0,0.89,0.19,2.0,,,20.0,97.0,1.0,,3.0,2.0,4.0,0.0,1.0,8.0,12.0,3.0
-2026/27,Conference League,127,514254,Gomez,Diego,Gómez Amarilla,Midfielder,36,20.0,0.0,0.0,1.0,0.02,0.37,0.0,,,0.0,15.0,1.0,,1.0,0.0,4.0,0.0,1.0,2.0,1.0,0.0
-2026/27,Conference League,129,509416,Ayari,Yasin,Ayari,Midfielder,36,145.0,0.0,0.0,5.0,0.35,0.69,0.0,,,2.0,109.0,3.0,,0.0,1.0,6.0,0.0,3.0,4.0,3.0,0.0
+2026/27,Conference League,127,514254,Gomez,Diego,Gómez Amarilla,Midfielder,36,20.0,0.0,0.0,1.0,0.02,0.35,0.0,,,0.0,15.0,1.0,,1.0,0.0,4.0,0.0,1.0,2.0,1.0,0.0
+2026/27,Conference League,129,509416,Ayari,Yasin,Ayari,Midfielder,36,145.0,0.0,0.0,5.0,0.26,0.69,0.0,,,2.0,109.0,3.0,,0.0,1.0,6.0,0.0,3.0,4.0,3.0,0.0
 2026/27,Conference League,134,556637,Oriola,Nehemiah,Oriola,Midfielder,36,0.0,,,,,,,,,,,,,,,,,,,,
 2026/27,Conference League,138,647850,Kostoulas,Charalampos,Kostoulas,Forward,36,0.0,,,,,,,,,,,,,,,,,,,,
-2026/27,Conference League,504,610799,Vuskovic,Luka,Vušković,Defender,36,112.0,0.0,0.0,3.0,0.19,0.53,0.0,,,5.0,128.0,3.0,,3.0,0.0,9.0,1.0,7.0,15.0,6.0,0.0
+2026/27,Conference League,504,610799,Vuskovic,Luka,Vušković,Defender,36,112.0,0.0,0.0,3.0,0.2,0.53,0.0,,,5.0,129.0,3.0,,4.0,0.0,9.0,1.0,7.0,16.0,6.0,0.0
 2026/27,Conference League,594,538007,David,Promise,David,Forward,36,55.0,0.0,0.0,4.0,0.28,0.01,0.0,,,8.0,14.0,1.0,,1.0,0.0,1.0,0.0,0.0,4.0,3.0,0.0
 2026/27,Conference League,600,612855,Osman,Ibrahim,Osman,Midfielder,36,169.0,0.0,2.0,8.0,0.8500000000000001,0.6799999999999999,0.0,,,15.0,108.0,3.0,,1.0,0.0,8.0,0.0,0.0,5.0,22.0,1.0
-2026/27,Conference League,605,611695,Yalcouyé,Malick,Yalcouyé,Midfielder,36,270.0,1.0,0.0,8.0,0.69,0.6,2.0,,,15.0,221.0,8.0,,5.0,3.0,13.0,0.0,2.0,18.0,11.0,0.0
-2026/27,Conference League,614,512123,Hadjam,Jaouen,Hadjam,Defender,36,157.0,0.0,0.0,3.0,0.36000000000000004,0.48000000000000004,1.0,,,7.0,119.0,2.0,,1.0,2.0,4.0,0.0,1.0,7.0,8.0,2.0
+2026/27,Conference League,605,611695,Yalcouyé,Malick,Yalcouyé,Midfielder,36,270.0,1.0,0.0,8.0,1.1,0.6,2.0,,,15.0,220.0,8.0,,5.0,3.0,13.0,0.0,1.0,17.0,11.0,0.0
+2026/27,Conference League,614,512123,Hadjam,Jaouen,Hadjam,Defender,36,157.0,0.0,0.0,3.0,0.49,0.5,1.0,,,7.0,118.0,2.0,,1.0,2.0,4.0,0.0,1.0,7.0,8.0,2.0
 2026/27,Conference League,639,592984,Andrés,José María,Andrés Baixauli,Midfielder,36,22.0,0.0,0.0,1.0,0.04,0.13,0.0,,,2.0,23.0,1.0,,1.0,0.0,1.0,0.0,1.0,2.0,1.0,0.0
 2026/27,Conference League,658,661016,Ibrahim,Younes,Ibrahim,Midfielder,36,23.0,0.0,1.0,1.0,0.05,0.58,0.0,,,2.0,19.0,2.0,,0.0,0.0,0.0,0.0,0.0,1.0,1.0,0.0
 2026/27,EFL Cup,2,109745,Arrizabalaga,Kepa,Arrizabalaga Revuelta,Goalkeeper,3,90.0,,,,,,,,,,40.0,,,0.0,0.0,10.0,,3.0,,,
@@ -1861,24 +1861,24 @@ season,competition,player_id,player_code,web_name,first_name,second_name,positio
 2026/27,EFL Cup,669,499857,Sharman-Lowe,Teddy,Sharman-Lowe,Goalkeeper,8,0.0,,,,,,,,,,,,,,,,,,,,
 2026/27,EFL Cup,670,616109,Subuloye,Olutayo,Subuloye,Defender,8,0.0,,,,,,,,,,,,,,,,,,,,
 2026/27,Europa League,57,457569,Petrović,Đorđe,Petrović,Goalkeeper,91,180.0,,,,,,,,,,77.0,,,0.0,0.0,7.0,,0.0,,,
-2026/27,Europa League,60,463981,Hill,James,Hill,Defender,91,298.0,0.0,0.0,6.0,0.61,0.12,2.0,,,5.0,245.0,1.0,,7.0,6.0,9.0,0.0,12.0,20.0,12.0,0.0
+2026/27,Europa League,60,463981,Hill,James,Hill,Defender,91,298.0,0.0,0.0,6.0,0.5700000000000001,0.12,2.0,,,5.0,245.0,1.0,,7.0,6.0,9.0,0.0,12.0,20.0,12.0,0.0
 2026/27,Europa League,61,494521,Truffert,Adrien,Truffert,Defender,91,211.0,0.0,1.0,3.0,0.05,0.45,0.0,,,7.0,177.0,2.0,,9.0,3.0,9.0,0.0,4.0,11.0,14.0,2.0
 2026/27,Europa League,62,242882,Diakité,Bafodé,Diakité,Defender,91,297.0,0.0,0.0,3.0,0.31,0.1,1.0,,,4.0,262.0,1.0,,7.0,4.0,10.0,2.0,15.0,14.0,7.0,0.0
 2026/27,Europa League,64,54469,Smith,Adam,Smith,Defender,91,170.0,0.0,1.0,,,0.11,,,,0.0,120.0,2.0,,4.0,1.0,4.0,1.0,6.0,9.0,10.0,0.0
 2026/27,Europa League,66,575901,Soler,Julio,Soler Barreto,Defender,91,149.0,0.0,0.0,1.0,0.03,0.060000000000000005,0.0,,,4.0,108.0,3.0,,3.0,0.0,5.0,0.0,4.0,6.0,4.0,0.0
-2026/27,Europa League,67,499604,Rayan,Rayan Vitor,Simplício Rocha,Midfielder,91,137.0,3.0,0.0,6.0,0.55,0.35000000000000003,4.0,,,12.0,78.0,3.0,,2.0,1.0,6.0,0.0,2.0,10.0,5.0,0.0
+2026/27,Europa League,67,499604,Rayan,Rayan Vitor,Simplício Rocha,Midfielder,91,137.0,3.0,0.0,6.0,0.56,0.35000000000000003,4.0,,,12.0,78.0,3.0,,2.0,1.0,6.0,0.0,2.0,10.0,5.0,0.0
 2026/27,Europa League,68,201658,Tavernier,Marcus,Tavernier,Midfielder,91,252.0,1.0,0.0,5.0,1.06,0.73,1.0,,,10.0,152.0,9.0,,2.0,0.0,16.0,0.0,3.0,8.0,21.0,6.0
 2026/27,Europa League,69,503139,Scott,Alex,Scott,Midfielder,91,90.0,0.0,1.0,2.0,0.08,0.24,0.0,,,2.0,72.0,2.0,,3.0,2.0,4.0,0.0,0.0,11.0,8.0,0.0
 2026/27,Europa League,70,222683,Kluivert,Justin,Kluivert,Midfielder,91,165.0,2.0,0.0,5.0,1.5699999999999998,0.29,3.0,,,11.0,75.0,5.0,,1.0,0.0,5.0,0.0,0.0,4.0,18.0,4.0
 2026/27,Europa League,71,155408,Cook,Lewis,Cook,Midfielder,91,208.0,0.0,0.0,3.0,0.8500000000000001,0.31,0.0,,,3.0,150.0,4.0,,1.0,5.0,8.0,0.0,6.0,5.0,11.0,1.0
-2026/27,Europa League,72,496208,Gannon-Doak,Ben,Gannon-Doak,Midfielder,91,253.0,0.0,0.0,7.0,0.42,0.26,1.0,,,18.0,152.0,3.0,,6.0,0.0,15.0,0.0,0.0,24.0,19.0,4.0
-2026/27,Europa League,73,200785,Adams,Tyler,Adams,Midfielder,91,239.0,1.0,0.0,1.0,0.08,0.34,1.0,,,2.0,214.0,2.0,,3.0,6.0,18.0,1.0,7.0,9.0,7.0,0.0
+2026/27,Europa League,72,496208,Gannon-Doak,Ben,Gannon-Doak,Midfielder,91,253.0,0.0,0.0,7.0,0.41000000000000003,0.26,1.0,,,18.0,152.0,3.0,,6.0,0.0,15.0,0.0,0.0,24.0,19.0,4.0
+2026/27,Europa League,73,200785,Adams,Tyler,Adams,Midfielder,91,239.0,1.0,0.0,1.0,0.12,0.34,1.0,,,2.0,214.0,2.0,,3.0,6.0,18.0,1.0,7.0,9.0,7.0,0.0
 2026/27,Europa League,74,111317,Brooks,David,Brooks,Midfielder,91,79.0,0.0,0.0,2.0,0.04,0.17,1.0,,,2.0,50.0,2.0,,0.0,0.0,3.0,0.0,1.0,4.0,2.0,1.0
 2026/27,Europa League,75,158499,Christie,Ryan,Christie,Midfielder,91,228.0,0.0,1.0,5.0,0.29000000000000004,0.2,1.0,,,7.0,191.0,3.0,,8.0,3.0,17.0,1.0,4.0,19.0,13.0,5.0
 2026/27,Europa League,76,614574,Tóth.A,Alex,Tóth,Midfielder,91,15.0,0.0,0.0,1.0,0.05,0.01,0.0,,,2.0,8.0,0.0,,0.0,0.0,0.0,0.0,0.0,,,0.0
-2026/27,Europa League,77,489888,Adli,Amine,Adli,Midfielder,91,79.0,1.0,0.0,3.0,0.12,0.08,1.0,,,2.0,42.0,0.0,,3.0,0.0,6.0,0.0,0.0,4.0,4.0,0.0
-2026/27,Europa League,79,444102,Evanilson,Francisco Evanilson,de Lima Barbosa,Forward,91,236.0,2.0,1.0,9.0,0.8,0.48,6.0,,,9.0,114.0,5.0,,4.0,2.0,12.0,0.0,6.0,13.0,14.0,2.0
-2026/27,Europa League,81,561245,Rodríguez,Álvaro,Rodríguez,Forward,91,224.0,1.0,0.0,10.0,2.0300000000000002,0.05,4.0,,,15.0,104.0,0.0,,1.0,0.0,5.0,1.0,2.0,17.0,21.0,10.0
+2026/27,Europa League,77,489888,Adli,Amine,Adli,Midfielder,91,79.0,1.0,0.0,3.0,0.14,0.08,1.0,,,2.0,42.0,0.0,,3.0,0.0,6.0,0.0,0.0,4.0,4.0,0.0
+2026/27,Europa League,79,444102,Evanilson,Francisco Evanilson,de Lima Barbosa,Forward,91,236.0,2.0,1.0,9.0,0.81,0.48,6.0,,,9.0,114.0,5.0,,4.0,2.0,12.0,0.0,6.0,13.0,14.0,2.0
+2026/27,Europa League,81,561245,Rodríguez,Álvaro,Rodríguez,Forward,91,224.0,1.0,0.0,10.0,1.9200000000000002,0.05,4.0,,,15.0,104.0,0.0,,1.0,0.0,5.0,1.0,2.0,17.0,21.0,10.0
 2026/27,Europa League,153,220362,Disasi,Axel,Disasi,Defender,31,270.0,0.0,0.0,,,0.05,,,,1.0,198.0,0.0,,4.0,6.0,18.0,3.0,15.0,11.0,6.0,0.0
 2026/27,Europa League,198,172649,Henderson,Dean,Henderson,Goalkeeper,31,90.0,,,,,,,,,,39.0,,,0.0,0.0,9.0,,0.0,,,
 2026/27,Europa League,199,121709,Benitez,Walter,Benítez,Goalkeeper,31,270.0,,,,,,,,,,102.0,,,0.0,0.0,28.0,,4.0,,,
@@ -2415,7 +2415,7 @@ season,competition,player_id,player_code,web_name,first_name,second_name,positio
 2026/27,Premier League,88,607464,Kayode,Michael,Kayode,Defender,94,657.0,1.0,0.0,7.0,0.59,0.76,1.0,,,11.0,383.0,8.0,,8.0,15.0,32.0,4.0,17.0,34.0,32.0,3.0
 2026/27,Premier League,89,194010,Henry,Rico,Henry,Defender,94,2.0,0.0,0.0,,,,,,,0.0,2.0,0.0,,0.0,0.0,0.0,0.0,0.0,,,0.0
 2026/27,Premier League,90,472713,Hickey,Aaron,Hickey,Defender,94,307.0,0.0,0.0,2.0,0.08,0.08,1.0,,,2.0,215.0,0.0,,7.0,3.0,15.0,3.0,22.0,29.0,11.0,0.0
-2026/27,Premier League,91,231065,Pinnock,Ethan,Pinnock,Defender,9,642.0,0.0,0.0,4.0,0.16999999999999998,0.1,0.0,,,7.0,293.0,0.0,,6.0,8.0,14.0,16.0,55.0,26.0,24.0,0.0
+2026/27,Premier League,91,231065,Pinnock,Ethan,Pinnock,Defender,9,732.0,0.0,0.0,4.0,0.16999999999999998,0.21,0.0,,,11.0,334.0,1.0,,6.0,10.0,16.0,18.0,61.0,30.0,29.0,0.0
 2026/27,Premier League,93,513086,Schuster,Jannik,Schuster,Defender,94,298.0,0.0,1.0,1.0,0.1,0.54,0.0,,,7.0,167.0,1.0,,3.0,0.0,9.0,7.0,34.0,15.0,18.0,0.0
 2026/27,Premier League,94,513418,Schade,Kevin,Schade,Midfielder,94,691.0,3.0,0.0,18.0,2.12,0.34,7.0,,,37.0,323.0,3.0,,13.0,1.0,32.0,1.0,9.0,52.0,60.0,19.0
 2026/27,Premier League,95,533463,O.Dango,Dango,Ouattara,Midfielder,94,398.0,1.0,0.0,9.0,1.06,0.77,2.0,,,25.0,200.0,8.0,,7.0,6.0,31.0,1.0,10.0,30.0,31.0,3.0
@@ -2430,7 +2430,7 @@ season,competition,player_id,player_code,web_name,first_name,second_name,positio
 2026/27,Premier League,106,502500,Thiago,Igor Thiago,Nascimento Rodrigues,Forward,94,803.0,2.0,2.0,20.0,4.0600000000000005,1.26,5.0,,,46.0,345.0,7.0,,9.0,1.0,25.0,4.0,10.0,56.0,91.0,10.0
 2026/27,Premier League,108,75115,Wilson,Callum,Wilson,Forward,94,36.0,0.0,0.0,4.0,0.12,0.12,0.0,,,11.0,26.0,1.0,,0.0,0.0,2.0,0.0,1.0,3.0,8.0,1.0
 2026/27,Premier League,109,489639,Verbruggen,Bart,Verbruggen,Goalkeeper,36,810.0,,,,,0.21000000000000002,,,,,419.0,,,0.0,0.0,67.0,,7.0,6.0,,
-2026/27,Premier League,110,472739,Rushworth,Carl,Rushworth,Goalkeeper,9,810.0,,1.0,,,0.03,,,,,468.0,1.0,,0.0,0.0,87.0,,6.0,4.0,1.0,
+2026/27,Premier League,110,472739,Rushworth,Carl,Rushworth,Goalkeeper,9,900.0,,1.0,,,0.03,,,,,517.0,1.0,,0.0,0.0,92.0,,7.0,5.0,1.0,
 2026/27,Premier League,111,49262,Steele,Jason,Steele,Goalkeeper,36,0.0,,,,,,,,,,,,,,,,,,,,
 2026/27,Premier League,112,469142,Van Hecke,Jan Paul,van Hecke,Defender,6,810.0,2.0,0.0,10.0,1.63,0.69,4.0,,,14.0,935.0,10.0,,16.0,9.0,33.0,10.0,40.0,54.0,40.0,1.0
 2026/27,Premier League,113,231416,F.Kadıoğlu,Ferdi,Kadıoğlu,Defender,36,520.0,0.0,0.0,5.0,0.15,0.16,2.0,,,6.0,320.0,4.0,,2.0,5.0,17.0,2.0,19.0,11.0,13.0,0.0
@@ -2479,19 +2479,19 @@ season,competition,player_id,player_code,web_name,first_name,second_name,positio
 2026/27,Premier League,172,110690,Wilson,Ben,Wilson,Goalkeeper,9,0.0,,,,,,,,,,,,,,,,,,,,
 2026/27,Premier League,173,461102,Thomas,Bobby,Thomas,Defender,9,678.0,0.0,0.0,14.0,0.6,0.37,0.0,,,23.0,394.0,3.0,,5.0,11.0,26.0,9.0,63.0,40.0,25.0,0.0
 2026/27,Premier League,174,436761,Kitching,Liam,Kitching,Defender,9,0.0,,,,,,,,,,,,,,,,,,,,
-2026/27,Premier League,175,451284,van Ewijk,Milan,van Ewijk,Defender,9,720.0,0.0,0.0,1.0,0.01,0.48000000000000004,0.0,,,9.0,411.0,9.0,,14.0,15.0,25.0,5.0,30.0,30.0,26.0,3.0
-2026/27,Premier League,176,173878,Dasilva,Jay,Dasilva,Defender,9,805.0,1.0,1.0,3.0,0.5,0.7100000000000001,2.0,,,3.0,409.0,7.0,,11.0,7.0,21.0,6.0,14.0,25.0,31.0,3.0
+2026/27,Premier League,175,451284,van Ewijk,Milan,van Ewijk,Defender,9,810.0,0.0,0.0,1.0,0.01,0.5800000000000001,0.0,,,9.0,489.0,10.0,,17.0,18.0,28.0,5.0,32.0,37.0,32.0,3.0
+2026/27,Premier League,176,173878,Dasilva,Jay,Dasilva,Defender,9,895.0,1.0,1.0,4.0,0.53,0.76,2.0,,,3.0,465.0,8.0,,13.0,10.0,25.0,6.0,17.0,31.0,38.0,3.0
 2026/27,Premier League,177,465390,Kesler-Hayden,Kaine,Kesler-Hayden,Defender,9,3.0,0.0,0.0,,,,,,,0.0,8.0,0.0,,1.0,0.0,2.0,0.0,0.0,2.0,,0.0
 2026/27,Premier League,179,204813,Latibeaudiere,Joel,Latibeaudiere,Defender,9,1.0,0.0,0.0,,,,,,,0.0,2.0,0.0,,0.0,0.0,0.0,1.0,1.0,,,0.0
 2026/27,Premier League,182,539142,Amenda,Aurèle,Amenda,Defender,9,360.0,0.0,0.0,1.0,0.02,0.39,0.0,,,6.0,199.0,1.0,,1.0,3.0,11.0,4.0,16.0,16.0,14.0,2.0
-2026/27,Premier League,183,480457,Rudoni,Jack,Rudoni,Midfielder,9,651.0,3.0,0.0,14.0,2.11,1.42,6.0,,,16.0,386.0,14.0,,8.0,5.0,36.0,3.0,8.0,37.0,56.0,9.0
-2026/27,Premier League,184,168144,Grimes,Matt,Grimes,Midfielder,9,714.0,0.0,0.0,5.0,0.17,0.23,0.0,,,0.0,495.0,3.0,,13.0,3.0,21.0,3.0,18.0,25.0,21.0,0.0
-2026/27,Premier League,185,501459,Sakamoto,Tatsuhiro,Sakamoto,Midfielder,9,314.0,1.0,0.0,4.0,0.29,0.06,1.0,,,13.0,121.0,0.0,,5.0,2.0,13.0,0.0,5.0,20.0,15.0,2.0
+2026/27,Premier League,183,480457,Rudoni,Jack,Rudoni,Midfielder,9,737.0,3.0,0.0,17.0,2.23,1.68,6.0,,,23.0,468.0,17.0,,9.0,6.0,40.0,3.0,10.0,40.0,63.0,10.0
+2026/27,Premier League,184,168144,Grimes,Matt,Grimes,Midfielder,9,718.0,0.0,0.0,5.0,0.17,0.24000000000000002,0.0,,,0.0,509.0,3.0,,13.0,4.0,21.0,3.0,18.0,25.0,21.0,0.0
+2026/27,Premier League,185,501459,Sakamoto,Tatsuhiro,Sakamoto,Midfielder,9,400.0,1.0,0.0,5.0,0.54,0.09,2.0,,,16.0,159.0,0.0,,10.0,2.0,16.0,0.0,6.0,27.0,25.0,2.0
 2026/27,Premier League,186,241293,Mason-Clark,Ephron,Mason-Clark,Midfielder,9,330.0,0.0,0.0,4.0,0.51,0.37,2.0,,,12.0,126.0,5.0,,0.0,0.0,11.0,0.0,7.0,16.0,34.0,7.0
 2026/27,Premier League,187,439668,Eccles,Josh,Eccles,Midfielder,9,0.0,,,,,,,,,,,,,,,,,,,,
-2026/27,Premier League,188,226965,Torp,Victor,Torp,Midfielder,9,143.0,0.0,1.0,1.0,0.03,0.29,0.0,,,2.0,96.0,4.0,,1.0,1.0,7.0,0.0,3.0,3.0,5.0,1.0
-2026/27,Premier League,190,469272,Tchaouna,Loum,Tchaouna,Midfielder,9,213.0,0.0,0.0,6.0,0.23,0.18,2.0,,,5.0,104.0,3.0,,1.0,0.0,11.0,1.0,5.0,8.0,9.0,1.0
-2026/27,Premier League,194,230730,Thomas-Asante,Brandon,Thomas-Asante,Forward,9,481.0,0.0,2.0,11.0,0.59,0.08,4.0,,,17.0,197.0,3.0,,7.0,13.0,20.0,2.0,5.0,45.0,42.0,4.0
+2026/27,Premier League,188,226965,Torp,Victor,Torp,Midfielder,9,229.0,0.0,1.0,4.0,0.23,0.33,1.0,,,4.0,169.0,6.0,,3.0,3.0,13.0,0.0,6.0,10.0,8.0,1.0
+2026/27,Premier League,190,469272,Tchaouna,Loum,Tchaouna,Midfielder,9,217.0,0.0,0.0,7.0,0.39,0.18,2.0,,,6.0,108.0,3.0,,1.0,0.0,11.0,1.0,5.0,8.0,9.0,1.0
+2026/27,Premier League,194,230730,Thomas-Asante,Brandon,Thomas-Asante,Forward,9,498.0,0.0,2.0,12.0,0.63,0.08,4.0,,,18.0,207.0,3.0,,8.0,14.0,20.0,2.0,5.0,46.0,45.0,5.0
 2026/27,Premier League,195,218997,Simms,Ellis,Simms,Forward,9,117.0,1.0,0.0,2.0,0.4,0.01,2.0,,,4.0,34.0,2.0,,0.0,0.0,2.0,0.0,1.0,8.0,7.0,0.0
 2026/27,Premier League,198,172649,Henderson,Dean,Henderson,Goalkeeper,31,360.0,,,,,,,,,,165.0,,,0.0,0.0,36.0,,10.0,,,
 2026/27,Premier League,199,121709,Benitez,Walter,Benítez,Goalkeeper,31,450.0,,,,,,,,,,216.0,,,0.0,0.0,37.0,,9.0,2.0,,
@@ -2504,7 +2504,7 @@ season,competition,player_id,player_code,web_name,first_name,second_name,positio
 2026/27,Premier League,206,515621,Chadi Riad,Chadi,Riad Dnanou,Defender,31,72.0,0.0,0.0,,,0.01,,,,0.0,61.0,0.0,,1.0,1.0,3.0,0.0,5.0,3.0,3.0,0.0
 2026/27,Premier League,207,242313,Mingueza,Oscar,Mingueza,Defender,31,76.0,0.0,0.0,,,,,,,0.0,39.0,0.0,,4.0,0.0,1.0,0.0,3.0,6.0,12.0,1.0
 2026/27,Premier League,208,232185,Sarr,Ismaïla,Sarr,Midfielder,31,15.0,0.0,0.0,,,0.01,,,,1.0,7.0,0.0,,0.0,0.0,2.0,0.0,0.0,,1.0,0.0
-2026/27,Premier League,209,242898,Johnson,Brennan,Johnson,Midfielder,11,394.0,0.0,0.0,5.0,1.0699999999999998,0.39,0.0,,,10.0,139.0,5.0,,8.0,3.0,16.0,1.0,5.0,13.0,21.0,3.0
+2026/27,Premier League,209,242898,Johnson,Brennan,Johnson,Midfielder,11,411.0,0.0,0.0,5.0,1.0699999999999998,0.39,0.0,,,10.0,145.0,6.0,,8.0,3.0,16.0,1.0,5.0,14.0,21.0,3.0
 2026/27,Premier League,210,496221,Wharton,Adam,Wharton,Midfielder,31,795.0,0.0,1.0,5.0,0.18,1.22,2.0,,,5.0,503.0,12.0,,18.0,10.0,27.0,2.0,17.0,40.0,26.0,7.0
 2026/27,Premier League,211,488024,Yeremy,Yéremy,Pino Santos,Midfielder,31,605.0,1.0,0.0,9.0,0.99,0.9500000000000001,2.0,,,15.0,378.0,12.0,,11.0,4.0,27.0,1.0,4.0,29.0,30.0,7.0
 2026/27,Premier League,212,108413,Hughes,Will,Hughes,Midfielder,31,40.0,0.0,0.0,,,0.04,,,,0.0,30.0,1.0,,1.0,0.0,3.0,0.0,3.0,1.0,2.0,1.0
@@ -2514,29 +2514,29 @@ season,competition,player_id,player_code,web_name,first_name,second_name,positio
 2026/27,Premier League,222,247412,Strand Larsen,Jørgen,Strand Larsen,Forward,31,445.0,1.0,0.0,9.0,1.41,0.53,6.0,,,12.0,154.0,2.0,,3.0,0.0,10.0,3.0,6.0,23.0,38.0,11.0
 2026/27,Premier League,223,231747,Mateta,Jean-Philippe,Mateta,Forward,31,167.0,0.0,0.0,6.0,1.96,0.04,2.0,,,6.0,55.0,2.0,,2.0,1.0,7.0,0.0,2.0,13.0,14.0,3.0
 2026/27,Premier League,224,205533,Nketiah,Eddie,Nketiah,Forward,31,270.0,0.0,1.0,5.0,1.13,0.63,2.0,,,10.0,104.0,4.0,,4.0,1.0,10.0,0.0,2.0,14.0,35.0,3.0
-2026/27,Premier League,226,111234,Pickford,Jordan,Pickford,Goalkeeper,11,810.0,,,,,0.03,,,,,450.0,,,0.0,0.0,94.0,,15.0,6.0,,
+2026/27,Premier League,226,111234,Pickford,Jordan,Pickford,Goalkeeper,11,900.0,,,,,0.04,,,,,499.0,,,0.0,0.0,105.0,,17.0,7.0,,
 2026/27,Premier League,227,229600,Travers,Mark,Travers,Goalkeeper,11,0.0,,,,,,,,,,,,,,,,,,,,
 2026/27,Premier League,228,138001,King,Tom,King,Goalkeeper,11,0.0,,,,,,,,,,,,,,,,,,,,
-2026/27,Premier League,229,17761,Tarkowski,James,Tarkowski,Defender,11,810.0,1.0,1.0,4.0,0.18000000000000002,0.11,1.0,,,8.0,582.0,4.0,,15.0,22.0,31.0,9.0,48.0,65.0,19.0,0.0
-2026/27,Premier League,230,480455,Branthwaite,Jarrad,Branthwaite,Defender,11,712.0,0.0,0.0,6.0,0.37,0.13,4.0,,,12.0,511.0,2.0,,8.0,12.0,26.0,14.0,45.0,40.0,24.0,2.0
-2026/27,Premier League,231,106611,Keane,Michael,Keane,Defender,11,98.0,0.0,0.0,1.0,0.01,0.01,0.0,,,4.0,85.0,0.0,,2.0,0.0,6.0,0.0,5.0,7.0,3.0,0.0
-2026/27,Premier League,232,512462,O'Brien,Jake,O'Brien,Defender,11,208.0,0.0,0.0,2.0,0.2,0.09,1.0,,,4.0,129.0,1.0,,1.0,1.0,8.0,2.0,16.0,8.0,6.0,1.0
-2026/27,Premier League,233,224967,Mykolenko,Vitalii,Mykolenko,Defender,11,704.0,0.0,0.0,1.0,0.04,0.42,0.0,,,10.0,522.0,4.0,,17.0,8.0,41.0,8.0,23.0,44.0,23.0,1.0
+2026/27,Premier League,229,17761,Tarkowski,James,Tarkowski,Defender,11,900.0,1.0,1.0,4.0,0.18000000000000002,0.11,1.0,,,8.0,621.0,4.0,,15.0,23.0,32.0,10.0,50.0,67.0,20.0,0.0
+2026/27,Premier League,230,480455,Branthwaite,Jarrad,Branthwaite,Defender,11,801.0,0.0,0.0,6.0,0.37,0.23,4.0,,,16.0,580.0,3.0,,10.0,12.0,29.0,14.0,54.0,52.0,26.0,2.0
+2026/27,Premier League,231,106611,Keane,Michael,Keane,Defender,11,99.0,0.0,0.0,1.0,0.01,0.01,0.0,,,4.0,88.0,0.0,,2.0,0.0,6.0,0.0,6.0,7.0,3.0,0.0
+2026/27,Premier League,232,512462,O'Brien,Jake,O'Brien,Defender,11,225.0,0.0,0.0,2.0,0.2,0.09,1.0,,,4.0,140.0,1.0,,2.0,1.0,9.0,2.0,16.0,12.0,7.0,1.0
+2026/27,Premier League,233,224967,Mykolenko,Vitalii,Mykolenko,Defender,11,794.0,0.0,1.0,2.0,0.18000000000000002,0.61,1.0,,,12.0,600.0,6.0,,18.0,10.0,48.0,8.0,31.0,53.0,28.0,2.0
 2026/27,Premier League,234,243571,Patterson,Nathan,Patterson,Defender,11,0.0,,,,,,,,,,,,,,,,,,,,
-2026/27,Premier League,236,215413,Dewsbury-Hall,Kiernan,Dewsbury-Hall,Midfielder,11,804.0,2.0,1.0,23.0,1.6,1.28,7.0,,,25.0,547.0,21.0,,16.0,2.0,42.0,2.0,8.0,44.0,38.0,18.0
+2026/27,Premier League,236,215413,Dewsbury-Hall,Kiernan,Dewsbury-Hall,Midfielder,11,894.0,3.0,1.0,25.0,1.78,1.3900000000000001,8.0,,,32.0,613.0,22.0,,20.0,3.0,45.0,3.0,8.0,49.0,47.0,23.0
 2026/27,Premier League,237,440993,Ndiaye,Iliman,Ndiaye,Midfielder,43,681.0,0.0,3.0,17.0,1.95,1.04,6.0,,,45.0,476.0,9.0,,13.0,4.0,37.0,0.0,6.0,49.0,66.0,21.0
 2026/27,Premier League,238,114283,Grealish,Jack,Grealish,Midfielder,11,307.0,0.0,0.0,4.0,0.11000000000000001,0.81,2.0,,,18.0,201.0,9.0,,4.0,1.0,16.0,0.0,3.0,13.0,15.0,4.0
-2026/27,Premier League,239,232928,Garner,James,Garner,Midfielder,11,690.0,0.0,0.0,8.0,0.47,0.6799999999999999,2.0,,,3.0,539.0,8.0,,21.0,4.0,48.0,5.0,11.0,30.0,24.0,1.0
+2026/27,Premier League,239,232928,Garner,James,Garner,Midfielder,11,780.0,0.0,0.0,8.0,0.47,0.73,2.0,,,4.0,616.0,8.0,,24.0,5.0,51.0,5.0,14.0,33.0,28.0,2.0
 2026/27,Premier League,240,490094,Iroegbunam,Tim,Iroegbunam,Midfielder,88,289.0,1.0,0.0,5.0,0.43000000000000005,0.15000000000000002,1.0,,,10.0,148.0,1.0,,13.0,4.0,17.0,1.0,1.0,25.0,27.0,7.0
 2026/27,Premier League,241,433154,McNeil,Dwight,McNeil,Midfielder,31,271.0,0.0,0.0,3.0,0.2,0.26,0.0,,,3.0,109.0,2.0,,5.0,3.0,10.0,4.0,4.0,9.0,25.0,5.0
-2026/27,Premier League,242,550615,George,Tyrique,George,Midfielder,11,550.0,1.0,0.0,13.0,0.5,0.55,3.0,,,25.0,324.0,10.0,,5.0,4.0,22.0,0.0,3.0,28.0,29.0,9.0
-2026/27,Premier League,243,502697,Alcaraz,Carlos,Alcaraz Durán,Midfielder,11,13.0,0.0,0.0,4.0,0.13,0.02,1.0,,,6.0,21.0,0.0,,1.0,0.0,4.0,0.0,0.0,2.0,5.0,0.0
-2026/27,Premier League,244,609873,Armstrong,Harrison,Armstrong,Midfielder,11,789.0,0.0,1.0,8.0,0.79,0.78,2.0,,,12.0,399.0,9.0,,16.0,5.0,33.0,5.0,15.0,36.0,36.0,8.0
-2026/27,Premier League,245,496661,Dibling,Tyler,Dibling,Midfielder,11,46.0,0.0,0.0,3.0,0.17,0.3,1.0,,,6.0,41.0,3.0,,2.0,0.0,1.0,0.0,0.0,4.0,4.0,1.0
-2026/27,Premier League,246,513466,Röhl,Merlin,Röhl,Midfielder,11,521.0,0.0,0.0,2.0,0.08,0.23,1.0,,,9.0,285.0,2.0,,8.0,5.0,22.0,1.0,10.0,24.0,23.0,2.0
-2026/27,Premier League,247,244860,Hackney,Hayden,Hackney,Midfielder,11,167.0,0.0,1.0,3.0,0.060000000000000005,0.17,1.0,,,9.0,162.0,4.0,,3.0,2.0,6.0,1.0,1.0,7.0,15.0,1.0
+2026/27,Premier League,242,550615,George,Tyrique,George,Midfielder,11,639.0,1.0,0.0,16.0,0.5700000000000001,1.06,4.0,,,29.0,390.0,12.0,,8.0,5.0,25.0,0.0,4.0,38.0,39.0,10.0
+2026/27,Premier League,243,502697,Alcaraz,Carlos,Alcaraz Durán,Midfielder,11,14.0,0.0,0.0,4.0,0.13,0.02,1.0,,,6.0,27.0,0.0,,1.0,0.0,4.0,0.0,0.0,2.0,5.0,0.0
+2026/27,Premier League,244,609873,Armstrong,Harrison,Armstrong,Midfielder,11,862.0,0.0,1.0,9.0,0.83,0.79,3.0,,,13.0,447.0,9.0,,18.0,7.0,38.0,5.0,16.0,38.0,42.0,8.0
+2026/27,Premier League,245,496661,Dibling,Tyler,Dibling,Midfielder,11,119.0,0.0,0.0,4.0,0.21000000000000002,0.5800000000000001,1.0,,,10.0,76.0,4.0,,4.0,1.0,2.0,0.0,3.0,9.0,11.0,2.0
+2026/27,Premier League,246,513466,Röhl,Merlin,Röhl,Midfielder,11,594.0,0.0,0.0,2.0,0.08,0.35,1.0,,,9.0,329.0,4.0,,11.0,5.0,26.0,2.0,11.0,31.0,25.0,2.0
+2026/27,Premier League,247,244860,Hackney,Hayden,Hackney,Midfielder,11,184.0,0.0,1.0,4.0,0.11000000000000001,0.17,2.0,,,10.0,175.0,5.0,,3.0,2.0,8.0,1.0,1.0,7.0,16.0,1.0
 2026/27,Premier League,248,486385,Beto,Norberto Bercique,Gomes Betuncal,Forward,11,31.0,0.0,0.0,2.0,0.09,,0.0,,,1.0,14.0,0.0,,0.0,0.0,0.0,1.0,0.0,1.0,5.0,1.0
-2026/27,Premier League,249,586309,Barry,Thierno,Barry,Forward,11,765.0,4.0,0.0,30.0,6.25,0.38,13.0,,,47.0,253.0,8.0,,2.0,3.0,12.0,2.0,10.0,61.0,66.0,10.0
+2026/27,Premier League,249,586309,Barry,Thierno,Barry,Forward,11,855.0,6.0,1.0,36.0,7.17,0.48,15.0,,,54.0,289.0,9.0,,2.0,3.0,14.0,2.0,12.0,70.0,73.0,10.0
 2026/27,Premier League,250,80201,Leno,Bernd,Leno,Goalkeeper,54,810.0,,,,,,,,,,440.0,,,0.0,0.0,74.0,,10.0,1.0,,
 2026/27,Premier League,251,86873,Lecomte,Benjamin,Lecomte,Goalkeeper,54,0.0,,,,,,,,,,,,,,,,,,,,
 2026/27,Premier League,253,174874,Andersen,Joachim,Andersen,Defender,54,190.0,0.0,0.0,,,0.1,,,,4.0,233.0,3.0,,2.0,2.0,9.0,1.0,15.0,12.0,8.0,1.0
@@ -2712,7 +2712,7 @@ season,competition,player_id,player_code,web_name,first_name,second_name,positio
 2026/27,Premier League,489,204968,Yates,Ryan,Yates,Midfielder,17,45.0,0.0,0.0,1.0,0.28,0.01,0.0,,,1.0,47.0,0.0,,1.0,2.0,3.0,0.0,0.0,3.0,3.0,0.0
 2026/27,Premier League,490,60689,Wood,Chris,Wood,Forward,17,111.0,0.0,0.0,3.0,0.63,0.01,1.0,,,4.0,32.0,0.0,,0.0,0.0,2.0,0.0,0.0,11.0,16.0,1.0
 2026/27,Premier League,491,482973,Igor Jesus,Igor Jesus,Maciel da Cruz,Forward,17,256.0,1.0,0.0,9.0,1.25,0.08,4.0,,,15.0,139.0,2.0,,2.0,0.0,8.0,0.0,5.0,27.0,33.0,6.0
-2026/27,Premier League,492,210156,Awoniyi,Taiwo,Awoniyi,Forward,9,359.0,1.0,0.0,10.0,1.76,0.04,3.0,,,21.0,104.0,4.0,,2.0,1.0,10.0,0.0,2.0,17.0,30.0,2.0
+2026/27,Premier League,492,210156,Awoniyi,Taiwo,Awoniyi,Forward,9,446.0,1.0,0.0,11.0,1.94,0.05,3.0,,,23.0,131.0,5.0,,2.0,1.0,13.0,0.0,3.0,21.0,37.0,3.0
 2026/27,Premier League,493,465680,Kalimuendo,Arnaud,Kalimuendo,Forward,17,50.0,0.0,0.0,1.0,0.03,,0.0,,,2.0,19.0,0.0,,1.0,0.0,2.0,0.0,1.0,3.0,7.0,2.0
 2026/27,Premier League,496,485055,Kinsky,Antonín,Kinský,Goalkeeper,6,810.0,,,,,,,,,,367.0,2.0,,0.0,0.0,69.0,,11.0,4.0,2.0,
 2026/27,Premier League,497,67089,Dubravka,Martin,Dubravka,Goalkeeper,6,0.0,,,,,,,,,,,,,,,,,,,,
@@ -2776,7 +2776,7 @@ season,competition,player_id,player_code,web_name,first_name,second_name,positio
 2026/27,Premier League,572,473284,Tzolakis,Konstantinos,Tzolakis,Goalkeeper,88,810.0,,,,,,,,,,481.0,,,1.0,0.0,116.0,,7.0,16.0,,
 2026/27,Premier League,573,494928,Sanchez,Juanlu,Sánchez,Defender,91,18.0,0.0,0.0,,,,,,,0.0,17.0,0.0,,1.0,0.0,1.0,0.0,0.0,2.0,2.0,1.0
 2026/27,Premier League,574,552946,Hjertø-Dahl,Jens,Hjertø-Dahl,Midfielder,88,8.0,0.0,0.0,,,,,,,0.0,3.0,0.0,,0.0,0.0,1.0,0.0,0.0,1.0,1.0,0.0
-2026/27,Premier League,575,661888,Yirenkyi,Caleb,Yirenkyi,Midfielder,9,561.0,0.0,0.0,2.0,0.15,0.18,0.0,,,3.0,278.0,4.0,,6.0,7.0,33.0,2.0,6.0,29.0,41.0,3.0
+2026/27,Premier League,575,661888,Yirenkyi,Caleb,Yirenkyi,Midfielder,9,651.0,0.0,0.0,2.0,0.15,0.2,0.0,,,4.0,344.0,4.0,,9.0,8.0,39.0,3.0,6.0,38.0,52.0,4.0
 2026/27,Premier League,576,608227,Stroud,Elliot,Stroud,Midfielder,88,429.0,0.0,1.0,3.0,0.060000000000000005,0.14,0.0,,,9.0,150.0,3.0,,11.0,4.0,26.0,0.0,2.0,18.0,20.0,2.0
 2026/27,Premier League,577,223723,Tomiyasu,Takehiro,Tomiyasu,Defender,31,190.0,0.0,0.0,,,0.03,,,,4.0,142.0,1.0,,2.0,5.0,7.0,1.0,9.0,8.0,12.0,0.0
 2026/27,Premier League,578,465920,Mudryk,Mykhailo,Mudryk,Midfielder,6,16.0,0.0,0.0,,,,,,,1.0,4.0,0.0,,0.0,0.0,0.0,0.0,0.0,1.0,1.0,0.0
@@ -2785,7 +2785,7 @@ season,competition,player_id,player_code,web_name,first_name,second_name,positio
 2026/27,Premier League,581,568420,Diomande,Ousmane,Diomande,Defender,17,344.0,0.0,0.0,3.0,0.23,0.02,0.0,,,10.0,199.0,0.0,,5.0,3.0,22.0,4.0,21.0,18.0,15.0,0.0
 2026/27,Premier League,582,690838,Madjo,Brian,Madjo,Forward,7,8.0,0.0,0.0,,,,,,,0.0,9.0,0.0,,0.0,0.0,0.0,0.0,0.0,4.0,4.0,0.0
 2026/27,Premier League,583,498444,Chavarria,Pep,Chavarría,Defender,8,314.0,0.0,1.0,1.0,0.04,0.35,0.0,,,7.0,242.0,4.0,,5.0,5.0,8.0,0.0,12.0,11.0,17.0,1.0
-2026/27,Premier League,584,196100,Hamer,Gustavo,Hamer,Midfielder,9,48.0,0.0,0.0,,,0.18,,,,0.0,40.0,1.0,,1.0,0.0,2.0,0.0,0.0,3.0,9.0,1.0
+2026/27,Premier League,584,196100,Hamer,Gustavo,Hamer,Midfielder,9,52.0,0.0,0.0,,,0.24,,,,0.0,50.0,2.0,,1.0,0.0,2.0,0.0,0.0,3.0,9.0,1.0
 2026/27,Premier League,585,597462,Herrington,Lucas,Herrington,Defender,88,332.0,0.0,0.0,1.0,0.02,0.04,0.0,,,4.0,175.0,2.0,,6.0,3.0,10.0,5.0,20.0,16.0,13.0,1.0
 2026/27,Premier League,586,606930,Mendy,Nobel,Mendy,Defender,88,433.0,1.0,0.0,5.0,0.62,,3.0,,,2.0,261.0,0.0,,8.0,5.0,15.0,8.0,41.0,16.0,22.0,1.0
 2026/27,Premier League,587,106921,Rulli,Gerónimo,Rulli,Goalkeeper,43,0.0,,,,,,,,,,,,,,,,,,,,
@@ -2799,7 +2799,7 @@ season,competition,player_id,player_code,web_name,first_name,second_name,positio
 2026/27,Premier League,596,487992,Ruggeri,Matteo,Ruggeri,Defender,7,158.0,0.0,0.0,1.0,0.03,0.02,0.0,,,0.0,119.0,2.0,,2.0,7.0,12.0,0.0,13.0,6.0,6.0,2.0
 2026/27,Premier League,597,433969,Suzuki,Zion,Suzuki,Goalkeeper,7,720.0,,,,,0.01,,,,,423.0,,,1.0,0.0,77.0,,18.0,6.0,,
 2026/27,Premier League,598,173774,Elvedi,Nico,Elvedi,Defender,2,592.0,0.0,0.0,3.0,0.24,0.6,2.0,,,11.0,422.0,2.0,,4.0,5.0,22.0,6.0,35.0,24.0,25.0,3.0
-2026/27,Premier League,599,627221,Cherif,Sidiki,Cherif,Forward,9,253.0,1.0,0.0,6.0,0.39,0.02,2.0,,,7.0,71.0,1.0,,0.0,2.0,5.0,0.0,1.0,13.0,25.0,4.0
+2026/27,Premier League,599,627221,Cherif,Sidiki,Cherif,Forward,9,256.0,1.0,0.0,6.0,0.39,0.02,2.0,,,7.0,72.0,1.0,,0.0,2.0,5.0,0.0,1.0,13.0,25.0,4.0
 2026/27,Premier League,600,612855,Osman,Ibrahim,Osman,Midfielder,36,40.0,0.0,0.0,2.0,0.05,0.07,0.0,,,7.0,45.0,1.0,,1.0,0.0,3.0,0.0,0.0,5.0,6.0,1.0
 2026/27,Premier League,601,611917,Williams-Barnett,Luca,Williams-Barnett,Midfielder,6,2.0,0.0,0.0,,,0.34,,,,3.0,9.0,1.0,,0.0,0.0,0.0,0.0,0.0,1.0,1.0,0.0
 2026/27,Premier League,602,524180,Humphreys,Cameron,Humphreys,Midfielder,40,0.0,,,,,,,,,,,,,,,,,,,,
@@ -2852,7 +2852,7 @@ season,competition,player_id,player_code,web_name,first_name,second_name,positio
 2026/27,Premier League,650,442299,Affengruber,David,Affengruber,Defender,54,540.0,0.0,0.0,4.0,0.27,0.07,1.0,,,6.0,552.0,1.0,,10.0,10.0,20.0,3.0,45.0,20.0,19.0,0.0
 2026/27,Premier League,653,595480,Samba,Floyd,Samba,Midfielder,43,0.0,,,,,,,,,,,,,,,,,,,,
 2026/27,Premier League,654,629068,Graham,Braiden,Graham,Midfielder,11,0.0,,,,,,,,,,,,,,,,,,,,
-2026/27,Premier League,655,242893,Gboho,Yann,Gboho,Midfielder,9,72.0,0.0,0.0,2.0,0.05,0.01,1.0,,,1.0,32.0,0.0,,1.0,0.0,3.0,0.0,0.0,4.0,4.0,1.0
+2026/27,Premier League,655,242893,Gboho,Yann,Gboho,Midfielder,9,145.0,1.0,0.0,5.0,0.25,0.060000000000000005,3.0,,,7.0,69.0,2.0,,2.0,0.0,5.0,0.0,0.0,8.0,8.0,1.0
 2026/27,Premier League,657,626464,Nunes,Gustavo,Nunes Fernandes Gomes,Midfielder,94,0.0,,,,,,,,,,,,,,,,,,,,
 2026/27,Premier League,658,661016,Ibrahim,Younes,Ibrahim,Midfielder,36,0.0,,,,,,,,,,,,,,,,,,,,
 2026/27,Premier League,660,612534,Fredrick,Benjamin,Fredrick,Defender,94,0.0,,,,,,,,,,,,,,,,,,,,

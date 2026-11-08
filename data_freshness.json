@@ -1,7 +1,7 @@
 {
   "season": "2026/27",
   "competition": "Premier League",
-  "latest_gameweek": 9,
+  "latest_gameweek": 10,
   "gameweeks_included": [
     1,
     2,
@@ -11,11 +11,12 @@
     6,
     7,
     8,
-    9
+    9,
+    10
   ],
-  "matches": 90,
-  "players": 524,
+  "matches": 94,
+  "players": 525,
   "source": "olbauday/FPL-Core-Insights",
-  "source_commit": "027b5a74b9d03594b656b2e4254b84dd5b2d5852",
-  "source_updated_at": "2026-11-07T03:04:23Z"
+  "source_commit": "e4c78337daa27e67b7bd8ab0c4a7e0547e2ab491",
+  "source_updated_at": "2026-11-08T02:39:31Z"
 }

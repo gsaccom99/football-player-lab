@@ -1,7 +1,7 @@
 {
   "source": "olbauday/FPL-Core-Insights",
-  "source_commit": "db58529e73064b95e9f2d6b9cec0fab061bcc162",
-  "source_updated_at": "2026-11-24T19:00:55Z",
+  "source_commit": "e7d69ac445a706bf4aabfad28d384f5e367c51a4",
+  "source_updated_at": "2026-11-25T18:06:05Z",
   "competitions": [
     {
       "season": "2025/26",
@@ -51,9 +51,9 @@
     {
       "season": "2026/27",
       "competition": "Champions League",
-      "latest_source_bucket": 10,
-      "finished_matches": 20,
-      "matches_with_player_stats": 20,
+      "latest_source_bucket": 12,
+      "finished_matches": 23,
+      "matches_with_player_stats": 23,
       "coverage_pct": 100.0,
       "players": 126
     },

@@ -1195,50 +1195,50 @@ season,competition,player_id,player_code,web_name,first_name,second_name,positio
 2025/26,Premier League,829,619734,Derry,Jesse,Derry,Midfielder,8,45.0,0.0,0.0,2.0,0.098,0.0233627,1.0,0.0,,,24.0,0.0,1.0,1.0,0.0,2.0,,0.0,2.0,4.0,1.0
 2025/26,Premier League,840,567119,Mheuka,Shumaira,Mheuka,Forward,8,1.0,0.0,0.0,0.0,0.0,0.00013524,0.0,0.0,,,3.0,0.0,0.0,0.0,0.0,0.0,,1.0,0.0,2.0,0.0
 2026/27,Champions League,1,154561,Raya,David,Raya Martín,Goalkeeper,3,360.0,,,,,0.03,,,,,158.0,1.0,,0.0,0.0,27.0,,1.0,1.0,,
-2026/27,Champions League,2,109745,Arrizabalaga,Kepa,Arrizabalaga Revuelta,Goalkeeper,3,0.0,,,,,,,,,,,,,,,,,,,,
+2026/27,Champions League,2,109745,Arrizabalaga,Kepa,Arrizabalaga Revuelta,Goalkeeper,3,90.0,,,,,0.02,,,,,46.0,,,0.0,0.0,4.0,,1.0,,,
 2026/27,Champions League,3,437495,Meslier,Illan,Meslier,Goalkeeper,3,0.0,,,,,,,,,,,,,,,,,,,,
-2026/27,Champions League,4,226597,Gabriel,Gabriel,dos Santos Magalhães,Defender,3,360.0,0.0,0.0,2.0,0.22,0.12,0.0,,,2.0,286.0,0.0,,4.0,7.0,10.0,6.0,20.0,16.0,23.0,1.0
-2026/27,Champions League,5,445122,J.Timber,Jurriën,Timber,Defender,3,180.0,1.0,0.0,3.0,0.16,0.39,2.0,,,7.0,124.0,2.0,,4.0,3.0,4.0,0.0,1.0,10.0,6.0,0.0
+2026/27,Champions League,4,226597,Gabriel,Gabriel,dos Santos Magalhães,Defender,3,450.0,0.0,0.0,4.0,0.65,0.13999999999999999,0.0,,,4.0,378.0,1.0,,4.0,8.0,17.0,6.0,23.0,23.0,28.0,1.0
+2026/27,Champions League,5,445122,J.Timber,Jurriën,Timber,Defender,3,205.0,1.0,0.0,3.0,0.16,0.39,2.0,,,9.0,144.0,2.0,,4.0,4.0,4.0,1.0,2.0,10.0,7.0,1.0
 2026/27,Champions League,6,462424,Saliba,William,Saliba,Defender,3,0.0,,,,,,,,,,,,,,,,,,,,
-2026/27,Champions League,7,499169,Lewis-Skelly,Myles,Lewis-Skelly,Midfielder,3,111.0,0.0,0.0,,,0.13,,,,4.0,66.0,3.0,,2.0,0.0,7.0,0.0,0.0,7.0,5.0,2.0
+2026/27,Champions League,7,499169,Lewis-Skelly,Myles,Lewis-Skelly,Midfielder,3,176.0,0.0,0.0,,,0.18,,,,5.0,111.0,3.0,,4.0,1.0,10.0,0.0,1.0,13.0,8.0,2.0
 2026/27,Champions League,8,466075,Calafiori,Riccardo,Calafiori,Defender,3,90.0,0.0,0.0,4.0,0.36,0.01,0.0,,,2.0,48.0,0.0,,1.0,1.0,3.0,0.0,4.0,5.0,1.0,0.0
-2026/27,Champions League,9,448104,Hincapie,Piero,Hincapié,Defender,3,180.0,0.0,0.0,3.0,0.71,0.05,0.0,,,7.0,106.0,3.0,,7.0,0.0,10.0,0.0,6.0,12.0,8.0,2.0
-2026/27,Champions League,10,198869,White,Benjamin,White,Defender,3,172.0,0.0,0.0,1.0,0.05,1.05,1.0,,,10.0,134.0,4.0,,3.0,1.0,8.0,0.0,3.0,8.0,11.0,4.0
+2026/27,Champions League,9,448104,Hincapie,Piero,Hincapié,Defender,3,270.0,0.0,0.0,5.0,1.0699999999999998,0.16,1.0,,,13.0,187.0,5.0,,10.0,2.0,12.0,0.0,10.0,19.0,9.0,2.0
+2026/27,Champions League,10,198869,White,Benjamin,White,Defender,3,237.0,0.0,0.0,2.0,0.08,1.12,1.0,,,10.0,174.0,6.0,,6.0,2.0,9.0,0.0,5.0,13.0,16.0,4.0
 2026/27,Champions League,11,500040,Mosquera,Cristhian,Mosquera,Defender,3,28.0,0.0,0.0,,,0.01,,,,0.0,13.0,0.0,,2.0,0.0,0.0,1.0,1.0,3.0,1.0,0.0
 2026/27,Champions League,12,223340,Saka,Bukayo,Saka,Midfielder,3,108.0,1.0,1.0,7.0,1.35,0.22999999999999998,2.0,,,13.0,81.0,2.0,,0.0,1.0,2.0,0.0,0.0,5.0,3.0,2.0
-2026/27,Champions League,13,204480,Rice,Declan,Rice,Midfielder,3,360.0,1.0,0.0,3.0,0.17,0.48000000000000004,1.0,,,7.0,391.0,3.0,,10.0,2.0,24.0,1.0,5.0,18.0,10.0,3.0
-2026/27,Champions League,14,232413,Eze,Eberechi,Eze,Midfielder,3,293.0,2.0,0.0,10.0,1.0699999999999998,0.54,5.0,,,25.0,170.0,4.0,,3.0,0.0,13.0,0.0,0.0,25.0,16.0,2.0
-2026/27,Champions League,15,184029,Ødegaard,Martin,Ødegaard,Midfielder,3,212.0,1.0,1.0,5.0,0.25,1.87,1.0,,,5.0,254.0,10.0,,2.0,1.0,12.0,0.0,0.0,9.0,7.0,3.0
-2026/27,Champions League,16,248857,Madueke,Noni,Madueke,Midfielder,3,261.0,1.0,1.0,6.0,0.8,0.53,3.0,,,16.0,174.0,4.0,,3.0,1.0,9.0,0.0,1.0,16.0,15.0,4.0
-2026/27,Champions League,17,195384,Merino,Mikel,Merino Zazón,Midfielder,3,225.0,0.0,1.0,8.0,1.3399999999999999,0.13,5.0,,,12.0,145.0,3.0,,3.0,1.0,8.0,1.0,2.0,14.0,17.0,3.0
+2026/27,Champions League,13,204480,Rice,Declan,Rice,Midfielder,3,450.0,1.0,0.0,7.0,0.48,0.63,1.0,,,9.0,490.0,5.0,,12.0,3.0,31.0,2.0,5.0,21.0,13.0,3.0
+2026/27,Champions League,14,232413,Eze,Eberechi,Eze,Midfielder,3,318.0,2.0,0.0,12.0,1.18,0.68,5.0,,,28.0,193.0,5.0,,4.0,1.0,15.0,0.0,0.0,27.0,17.0,2.0
+2026/27,Champions League,15,184029,Ødegaard,Martin,Ødegaard,Midfielder,3,302.0,1.0,1.0,7.0,0.33999999999999997,2.84,1.0,,,9.0,343.0,19.0,,3.0,1.0,13.0,0.0,0.0,11.0,10.0,4.0
+2026/27,Champions League,16,248857,Madueke,Noni,Madueke,Midfielder,3,351.0,1.0,2.0,11.0,1.1099999999999999,0.84,3.0,,,29.0,231.0,9.0,,3.0,1.0,14.0,0.0,1.0,23.0,18.0,5.0
+2026/27,Champions League,17,195384,Merino,Mikel,Merino Zazón,Midfielder,3,228.0,0.0,1.0,8.0,1.3399999999999999,0.13,5.0,,,12.0,147.0,3.0,,3.0,1.0,9.0,1.0,2.0,15.0,17.0,3.0
 2026/27,Champions League,19,481655,Zubimendi,Martín,Zubimendi Ibáñez,Midfielder,3,98.0,0.0,0.0,,,0.03,,,,3.0,86.0,0.0,,3.0,4.0,3.0,0.0,4.0,9.0,4.0,0.0
 2026/27,Champions League,20,616077,Dowman,Max,Dowman,Midfielder,3,6.0,0.0,0.0,1.0,0.05,0.04,0.0,,,4.0,8.0,0.0,,0.0,0.0,1.0,0.0,0.0,2.0,,0.0
-2026/27,Champions League,25,224117,Gyökeres,Viktor,Gyökeres,Forward,3,238.0,1.0,2.0,2.0,0.12,0.59,1.0,,,9.0,57.0,6.0,,0.0,1.0,5.0,1.0,0.0,5.0,8.0,3.0
+2026/27,Champions League,25,224117,Gyökeres,Viktor,Gyökeres,Forward,3,325.0,2.0,2.0,9.0,0.95,0.71,3.0,,,20.0,106.0,7.0,,0.0,1.0,7.0,1.0,0.0,11.0,16.0,4.0
 2026/27,Champions League,26,219847,Havertz,Kai,Havertz,Forward,3,110.0,0.0,1.0,1.0,0.56,0.37,0.0,,,8.0,50.0,4.0,,0.0,1.0,3.0,0.0,0.0,9.0,6.0,1.0
 2026/27,Champions League,29,72147,M.Bizot,Marco,Bizot,Goalkeeper,7,0.0,,,,,,,,,,,,,,,,,,,,
-2026/27,Champions League,31,199798,Konsa,Ezri,Konsa Ngoyo,Defender,3,332.0,0.0,0.0,,,0.12000000000000001,,,,4.0,272.0,1.0,,3.0,2.0,16.0,5.0,6.0,12.0,8.0,0.0
+2026/27,Champions League,31,199798,Konsa,Ezri,Konsa Ngoyo,Defender,3,422.0,0.0,0.0,2.0,0.23,0.13,0.0,,,7.0,348.0,1.0,,3.0,2.0,18.0,6.0,10.0,19.0,11.0,0.0
 2026/27,Champions League,32,199796,Cash,Matty,Cash,Defender,7,200.0,0.0,0.0,3.0,0.07,0.02,1.0,,,3.0,120.0,2.0,,7.0,1.0,6.0,0.0,4.0,9.0,9.0,0.0
-2026/27,Champions League,33,149484,Mings,Tyrone,Mings,Defender,7,90.0,0.0,0.0,,,0.01,,,,0.0,54.0,0.0,,0.0,0.0,3.0,1.0,3.0,2.0,,0.0
+2026/27,Champions League,33,149484,Mings,Tyrone,Mings,Defender,7,180.0,0.0,0.0,,,0.02,,,,0.0,138.0,0.0,,0.0,0.0,13.0,1.0,13.0,3.0,,0.0
 2026/27,Champions League,34,244954,Pau,Pau,Torres,Defender,7,360.0,0.0,2.0,2.0,0.19,0.54,0.0,,,4.0,267.0,5.0,,4.0,1.0,14.0,5.0,25.0,11.0,7.0,0.0
 2026/27,Champions League,35,515597,Bogarde,Lamare,Bogarde,Midfielder,7,22.0,0.0,0.0,1.0,0.05,,1.0,,,1.0,13.0,0.0,,1.0,0.0,1.0,0.0,0.0,1.0,1.0,0.0
-2026/27,Champions League,36,441302,Maatsen,Ian,Maatsen,Defender,7,180.0,0.0,0.0,1.0,0.02,0.02,0.0,,,1.0,110.0,1.0,,2.0,4.0,13.0,0.0,3.0,11.0,9.0,1.0
-2026/27,Champions League,37,184667,Lindelöf,Victor,Lindelöf,Defender,7,360.0,0.0,0.0,,,0.17,,,,1.0,230.0,1.0,,1.0,3.0,11.0,4.0,24.0,7.0,4.0,0.0
-2026/27,Champions League,41,195546,Buendía,Emiliano,Buendía Stati,Midfielder,7,220.0,2.0,0.0,12.0,2.5,0.18000000000000002,5.0,,,10.0,104.0,5.0,,5.0,1.0,10.0,0.0,1.0,12.0,16.0,3.0
+2026/27,Champions League,36,441302,Maatsen,Ian,Maatsen,Defender,7,270.0,0.0,0.0,1.0,0.02,0.04,0.0,,,3.0,183.0,1.0,,3.0,7.0,21.0,0.0,5.0,13.0,20.0,5.0
+2026/27,Champions League,37,184667,Lindelöf,Victor,Lindelöf,Defender,7,450.0,0.0,0.0,,,0.35,,,,2.0,303.0,1.0,,1.0,4.0,13.0,5.0,29.0,8.0,6.0,0.0
+2026/27,Champions League,41,195546,Buendía,Emiliano,Buendía Stati,Midfielder,7,228.0,2.0,0.0,12.0,2.5,0.2,5.0,,,10.0,112.0,5.0,,5.0,1.0,10.0,0.0,1.0,12.0,16.0,3.0
 2026/27,Champions League,43,166989,Tielemans,Youri,Tielemans,Midfielder,1,240.0,0.0,1.0,1.0,0.04,0.42000000000000004,1.0,,,3.0,182.0,6.0,,2.0,3.0,11.0,1.0,2.0,10.0,7.0,0.0
-2026/27,Champions League,45,122806,McGinn,John,McGinn,Midfielder,7,347.0,1.0,0.0,6.0,0.33999999999999997,0.85,3.0,,,4.0,204.0,8.0,,9.0,1.0,21.0,0.0,1.0,16.0,15.0,3.0
-2026/27,Champions League,46,88894,Barkley,Ross,Barkley,Midfielder,7,203.0,3.0,1.0,5.0,1.1300000000000001,0.08,3.0,,,7.0,133.0,2.0,,3.0,2.0,14.0,1.0,5.0,10.0,11.0,4.0
-2026/27,Champions League,47,226944,Kamara,Boubacar,Kamara,Midfielder,7,231.0,0.0,1.0,1.0,0.01,0.19,1.0,,,2.0,148.0,1.0,,8.0,4.0,10.0,2.0,9.0,19.0,10.0,4.0
-2026/27,Champions League,51,577285,George Hemmings,George,Hemmings,Midfielder,7,105.0,0.0,0.0,4.0,0.58,0.01,1.0,,,7.0,39.0,1.0,,1.0,0.0,4.0,0.0,1.0,7.0,6.0,1.0
-2026/27,Champions League,52,653481,Alysson,Alysson Edward Franco,da Rocha dos Santos,Midfielder,7,127.0,0.0,1.0,5.0,0.26,1.26,1.0,,,17.0,93.0,5.0,,3.0,2.0,7.0,0.0,0.0,16.0,12.0,5.0
-2026/27,Champions League,53,614071,Manzambi,Johan,Manzambi,Midfielder,7,135.0,1.0,0.0,4.0,0.44,0.25,2.0,,,9.0,68.0,2.0,,4.0,1.0,4.0,0.0,0.0,10.0,16.0,6.0
-2026/27,Champions League,54,448089,Gomes,Joao,Gomes,Midfielder,7,239.0,0.0,1.0,2.0,0.31,0.63,0.0,,,9.0,157.0,2.0,,11.0,2.0,10.0,0.0,8.0,19.0,12.0,0.0
+2026/27,Champions League,45,122806,McGinn,John,McGinn,Midfielder,7,421.0,1.0,0.0,7.0,0.38,1.28,3.0,,,5.0,231.0,9.0,,9.0,1.0,23.0,0.0,1.0,19.0,18.0,4.0
+2026/27,Champions League,46,88894,Barkley,Ross,Barkley,Midfielder,7,219.0,3.0,1.0,5.0,1.1300000000000001,0.09,3.0,,,7.0,138.0,2.0,,3.0,2.0,15.0,1.0,5.0,10.0,13.0,4.0
+2026/27,Champions League,47,226944,Kamara,Boubacar,Kamara,Midfielder,7,313.0,0.0,1.0,1.0,0.01,0.19,1.0,,,2.0,203.0,1.0,,8.0,4.0,12.0,3.0,12.0,23.0,12.0,4.0
+2026/27,Champions League,51,577285,George Hemmings,George,Hemmings,Midfielder,7,121.0,0.0,0.0,5.0,0.6399999999999999,0.02,1.0,,,8.0,56.0,1.0,,3.0,0.0,6.0,0.0,1.0,9.0,7.0,2.0
+2026/27,Champions League,52,653481,Alysson,Alysson Edward Franco,da Rocha dos Santos,Midfielder,7,193.0,0.0,1.0,5.0,0.26,1.27,1.0,,,19.0,111.0,5.0,,3.0,2.0,9.0,0.0,1.0,17.0,19.0,6.0
+2026/27,Champions League,53,614071,Manzambi,Johan,Manzambi,Midfielder,7,209.0,1.0,0.0,4.0,0.44,0.45,2.0,,,9.0,109.0,2.0,,5.0,3.0,7.0,0.0,1.0,14.0,22.0,7.0
+2026/27,Champions League,54,448089,Gomes,Joao,Gomes,Midfielder,7,305.0,0.0,1.0,2.0,0.31,0.65,0.0,,,9.0,213.0,2.0,,14.0,2.0,16.0,0.0,8.0,26.0,19.0,1.0
 2026/27,Champions League,56,173879,Abraham,Tammy,Abraham,Forward,7,54.0,1.0,0.0,2.0,0.9299999999999999,,1.0,,,3.0,19.0,0.0,,0.0,0.0,3.0,0.0,0.0,2.0,7.0,0.0
 2026/27,Champions League,131,535301,Baleba,Carlos,Baleba,Midfielder,1,162.0,0.0,0.0,2.0,0.1,0.1,1.0,,,5.0,133.0,2.0,,5.0,4.0,12.0,0.0,0.0,19.0,5.0,1.0
-2026/27,Champions League,155,448047,Enzo,Enzo,Fernández,Midfielder,43,334.0,1.0,1.0,9.0,0.95,1.47,2.0,,,12.0,329.0,11.0,,3.0,1.0,16.0,0.0,0.0,20.0,15.0,3.0
+2026/27,Champions League,155,448047,Enzo,Enzo,Fernández,Midfielder,43,397.0,1.0,1.0,10.0,0.98,1.63,2.0,,,14.0,383.0,13.0,,3.0,1.0,17.0,0.0,0.0,22.0,19.0,3.0
 2026/27,Champions League,160,493105,Garnacho,Alejandro,Garnacho Ferreyra,Midfielder,7,29.0,0.0,0.0,3.0,0.21,,1.0,,,8.0,17.0,0.0,,1.0,0.0,2.0,0.0,0.0,1.0,2.0,0.0
 2026/27,Champions League,162,532605,Andrey Santos,Andrey,Nascimento dos Santos,Midfielder,1,161.0,0.0,0.0,,,0.04,,,,0.0,152.0,0.0,,6.0,3.0,7.0,0.0,2.0,12.0,5.0,0.0
-2026/27,Champions League,166,517052,N.Jackson,Nicolas,Jackson,Forward,7,306.0,3.0,0.0,13.0,1.97,0.62,8.0,,,17.0,110.0,7.0,,0.0,1.0,8.0,0.0,3.0,13.0,20.0,6.0
-2026/27,Champions League,237,440993,Ndiaye,Iliman,Ndiaye,Midfielder,43,156.0,0.0,2.0,6.0,0.44,0.61,3.0,,,14.0,111.0,4.0,,2.0,2.0,6.0,0.0,0.0,13.0,15.0,3.0
+2026/27,Champions League,166,517052,N.Jackson,Nicolas,Jackson,Forward,7,396.0,3.0,0.0,14.0,1.99,0.64,8.0,,,20.0,136.0,7.0,,1.0,1.0,8.0,1.0,4.0,16.0,24.0,6.0
+2026/27,Champions League,237,440993,Ndiaye,Iliman,Ndiaye,Midfielder,43,183.0,0.0,3.0,7.0,0.47,0.72,3.0,,,19.0,142.0,5.0,,2.0,2.0,6.0,0.0,0.0,15.0,15.0,3.0
 2026/27,Champions League,325,59735,Darlow,Karl,Darlow,Goalkeeper,1,0.0,,,,,,,,,,,,,,,,,,,,
 2026/27,Champions League,350,116535,A.Becker,Alisson,Becker,Goalkeeper,14,360.0,,,,,,,,,,163.0,,,0.0,0.0,35.0,,5.0,,,
 2026/27,Champions League,351,449027,Mamardashvili,Giorgi,Mamardashvili,Goalkeeper,14,0.0,,,,,,,,,,,,,,,,,,,,
@@ -1262,23 +1262,23 @@ season,competition,player_id,player_code,web_name,first_name,second_name,positio
 2026/27,Champions League,379,219168,Isak,Alexander,Isak,Forward,14,136.0,1.0,1.0,7.0,0.6799999999999999,0.03,1.0,,,15.0,42.0,2.0,,1.0,0.0,1.0,0.0,0.0,3.0,5.0,2.0
 2026/27,Champions League,381,514514,Koumas,Lewis,Koumas,Midfielder,14,163.0,1.0,1.0,3.0,0.43,0.1,1.0,,,10.0,44.0,1.0,,0.0,0.0,1.0,0.0,1.0,6.0,9.0,4.0
 2026/27,Champions League,382,500058,Danns,Jayden,Danns,Forward,14,0.0,,,,,,,,,,,,,,,,,,,,
-2026/27,Champions League,384,204936,Donnarumma,Gianluigi,Donnarumma,Goalkeeper,43,360.0,,,,,,,,,,167.0,,,1.0,0.0,31.0,,4.0,4.0,,
+2026/27,Champions League,384,204936,Donnarumma,Gianluigi,Donnarumma,Goalkeeper,43,450.0,,,,,,,,,,195.0,,,1.0,0.0,36.0,,5.0,6.0,,
 2026/27,Champions League,386,122074,Bettinelli,Marcus,Bettinelli,Goalkeeper,43,0.0,,,,,,,,,,,,,,,,,,,,
-2026/27,Champions League,387,472769,O'Reilly,Nico,O'Reilly,Defender,43,91.0,0.0,0.0,1.0,0.21,0.24,0.0,,,4.0,69.0,2.0,,4.0,0.0,4.0,0.0,4.0,6.0,4.0,1.0
-2026/27,Champions League,388,209036,Guéhi,Marc,Guéhi,Defender,43,270.0,0.0,0.0,1.0,0.05,0.06,0.0,,,1.0,237.0,0.0,,3.0,5.0,12.0,4.0,6.0,11.0,8.0,0.0
-2026/27,Champions League,389,465351,Matheus N.,Matheus,Nunes,Defender,43,214.0,0.0,0.0,,,0.56,,,,3.0,217.0,3.0,,1.0,0.0,16.0,1.0,3.0,4.0,6.0,1.0
+2026/27,Champions League,387,472769,O'Reilly,Nico,O'Reilly,Defender,43,181.0,0.0,0.0,2.0,0.27,0.37,0.0,,,9.0,133.0,3.0,,5.0,0.0,11.0,0.0,4.0,10.0,5.0,1.0
+2026/27,Champions League,388,209036,Guéhi,Marc,Guéhi,Defender,43,360.0,0.0,0.0,1.0,0.05,0.11,0.0,,,1.0,336.0,0.0,,4.0,6.0,17.0,4.0,9.0,15.0,12.0,0.0
+2026/27,Champions League,389,465351,Matheus N.,Matheus,Nunes,Defender,43,304.0,0.0,0.0,2.0,0.1,0.81,0.0,,,7.0,327.0,4.0,,1.0,0.0,21.0,1.0,4.0,5.0,8.0,1.0
 2026/27,Champions League,390,171314,Rúben,Rúben,dos Santos Gato Alves Dias,Defender,43,229.0,0.0,0.0,1.0,0.01,0.11,0.0,,,2.0,208.0,1.0,,6.0,2.0,7.0,2.0,5.0,8.0,7.0,1.0
-2026/27,Champions League,391,477424,Gvardiol,Joško,Gvardiol,Defender,43,210.0,0.0,0.0,3.0,0.53,0.45000000000000007,2.0,,,5.0,204.0,2.0,,9.0,3.0,11.0,1.0,5.0,20.0,6.0,1.0
+2026/27,Champions League,391,477424,Gvardiol,Joško,Gvardiol,Defender,43,300.0,0.0,0.0,4.0,0.6000000000000001,0.5800000000000001,2.0,,,10.0,306.0,3.0,,11.0,6.0,20.0,1.0,7.0,23.0,7.0,1.0
 2026/27,Champions League,392,448514,Aït-Nouri,Rayan,Aït-Nouri,Defender,43,33.0,0.0,1.0,2.0,0.21,0.09999999999999999,0.0,,,1.0,31.0,2.0,,2.0,0.0,2.0,0.0,0.0,4.0,1.0,1.0
 2026/27,Champions League,393,578153,Khusanov,Abdukodir,Khusanov,Defender,43,312.0,0.0,0.0,,,0.13,,,,2.0,292.0,1.0,,6.0,11.0,15.0,1.0,9.0,10.0,8.0,0.0
 2026/27,Champions League,395,477064,Lewis,Rico,Lewis,Defender,43,90.0,0.0,2.0,,,0.28,,,,5.0,67.0,4.0,,0.0,1.0,4.0,0.0,1.0,1.0,1.0,0.0
 2026/27,Champions League,396,616222,Vitor Reis,Vitor,de Oliveira Nunes dos Reis,Defender,43,18.0,0.0,0.0,,,,,,,0.0,27.0,0.0,,0.0,0.0,0.0,0.0,2.0,1.0,,0.0
 2026/27,Champions League,397,437730,Semenyo,Antoine,Semenyo,Midfielder,43,152.0,0.0,0.0,7.0,0.47000000000000003,0.42000000000000004,2.0,,,13.0,101.0,4.0,,3.0,0.0,4.0,0.0,0.0,8.0,10.0,2.0
 2026/27,Champions League,398,209244,Foden,Phil,Foden,Midfielder,43,229.0,3.0,1.0,7.0,1.53,0.55,4.0,,,19.0,187.0,5.0,,3.0,2.0,6.0,0.0,1.0,7.0,16.0,4.0
-2026/27,Champions League,399,466052,Cherki,Rayan,Cherki,Midfielder,43,287.0,1.0,0.0,10.0,1.07,0.6,4.0,,,25.0,297.0,5.0,,2.0,1.0,14.0,0.0,1.0,12.0,19.0,7.0
-2026/27,Champions League,400,248875,Doku,Jérémy,Doku,Midfielder,43,71.0,0.0,0.0,2.0,0.16999999999999998,0.78,1.0,,,9.0,45.0,2.0,,0.0,0.0,3.0,0.0,0.0,9.0,6.0,0.0
+2026/27,Champions League,399,466052,Cherki,Rayan,Cherki,Midfielder,43,377.0,2.0,0.0,15.0,1.29,0.9199999999999999,6.0,,,37.0,396.0,7.0,,3.0,2.0,15.0,0.0,1.0,16.0,24.0,8.0
+2026/27,Champions League,400,248875,Doku,Jérémy,Doku,Midfielder,43,106.0,0.0,1.0,2.0,0.16999999999999998,1.24,1.0,,,21.0,75.0,6.0,,1.0,0.0,4.0,0.0,0.0,18.0,9.0,0.0
 2026/27,Champions League,406,91651,Kovačić,Mateo,Kovačić,Midfielder,43,22.0,0.0,0.0,,,0.03,,,,1.0,24.0,1.0,,2.0,0.0,4.0,0.0,1.0,3.0,,0.0
-2026/27,Champions League,411,223094,Haaland,Erling,Haaland,Forward,43,270.0,5.0,0.0,17.0,3.27,0.25,10.0,,,23.0,82.0,3.0,,1.0,2.0,5.0,0.0,2.0,10.0,9.0,1.0
+2026/27,Champions League,411,223094,Haaland,Erling,Haaland,Forward,43,360.0,5.0,0.0,18.0,3.33,0.26,11.0,,,28.0,96.0,3.0,,1.0,2.0,5.0,0.0,2.0,11.0,10.0,1.0
 2026/27,Champions League,412,465247,Lammens,Senne,Lammens,Goalkeeper,1,360.0,,,,,,,,,,144.0,,,0.0,0.0,27.0,,3.0,,,
 2026/27,Champions League,414,21205,Heaton,Tom,Heaton,Goalkeeper,1,0.0,,,,,,,,,,,,,,,,,,,,
 2026/27,Champions League,415,596777,Dorgu,Patrick,Dorgu,Midfielder,1,72.0,0.0,1.0,2.0,0.1,0.63,0.0,,,9.0,65.0,3.0,,4.0,0.0,4.0,0.0,4.0,8.0,2.0,0.0
@@ -1302,22 +1302,22 @@ season,competition,player_id,player_code,web_name,first_name,second_name,positio
 2026/27,Champions League,438,519913,Fletcher,Tyler,Fletcher,Midfielder,1,0.0,,,,,,,,,,,,,,,,,,,,
 2026/27,Champions League,439,485711,Šeško,Benjamin,Sesko,Forward,1,64.0,1.0,0.0,2.0,0.77,,1.0,,,6.0,18.0,0.0,,2.0,0.0,2.0,0.0,0.0,4.0,7.0,2.0
 2026/27,Champions League,440,458249,Zirkzee,Joshua,Zirkzee,Forward,1,73.0,1.0,0.0,4.0,1.35,0.08,3.0,,,4.0,40.0,1.0,,0.0,0.0,2.0,0.0,0.0,5.0,6.0,2.0
-2026/27,Champions League,452,208706,Bruno G.,Bruno,Guimarães Rodriguez Moura,Midfielder,3,184.0,0.0,0.0,8.0,0.9,0.24,3.0,,,10.0,176.0,2.0,,9.0,4.0,9.0,1.0,2.0,14.0,9.0,3.0
-2026/27,Champions League,481,215379,Anderson,Elliot,Anderson,Midfielder,43,291.0,1.0,1.0,7.0,1.1900000000000002,1.0699999999999998,2.0,,,8.0,312.0,6.0,,15.0,6.0,22.0,0.0,2.0,24.0,15.0,5.0
-2026/27,Champions League,557,439509,Tzolis,Christos,Tzolis,Midfielder,3,52.0,0.0,1.0,4.0,0.8200000000000001,0.09,2.0,,,8.0,34.0,3.0,,1.0,0.0,1.0,0.0,1.0,2.0,2.0,1.0
+2026/27,Champions League,452,208706,Bruno G.,Bruno,Guimarães Rodriguez Moura,Midfielder,3,209.0,0.0,0.0,8.0,0.9,0.25,3.0,,,11.0,206.0,2.0,,11.0,4.0,12.0,1.0,2.0,19.0,13.0,4.0
+2026/27,Champions League,481,215379,Anderson,Elliot,Anderson,Midfielder,43,381.0,1.0,1.0,11.0,1.8,1.27,5.0,,,13.0,407.0,8.0,,15.0,6.0,31.0,0.0,3.0,26.0,23.0,9.0
+2026/27,Champions League,557,439509,Tzolis,Christos,Tzolis,Midfielder,3,117.0,0.0,1.0,7.0,0.9400000000000001,0.09999999999999999,3.0,,,15.0,77.0,3.0,,2.0,0.0,3.0,0.0,2.0,4.0,8.0,2.0
 2026/27,Champions League,579,445087,Araujo,Ronald,Araujo,Defender,14,197.0,2.0,1.0,7.0,0.85,0.15,2.0,,,8.0,164.0,2.0,,0.0,1.0,6.0,2.0,8.0,6.0,5.0,2.0
 2026/27,Champions League,587,106921,Rulli,Gerónimo,Rulli,Goalkeeper,43,0.0,,,,,,,,,,,,,,,,,,,,
 2026/27,Champions League,596,487992,Ruggeri,Matteo,Ruggeri,Defender,7,0.0,,,,,,,,,,,,,,,,,,,,
-2026/27,Champions League,597,433969,Suzuki,Zion,Suzuki,Goalkeeper,7,360.0,,,,,,,,,,156.0,2.0,,0.0,0.0,28.0,,2.0,,,
+2026/27,Champions League,597,433969,Suzuki,Zion,Suzuki,Goalkeeper,7,450.0,,,,,,,,,,205.0,2.0,,0.0,0.0,40.0,,3.0,1.0,,
 2026/27,Champions League,611,214590,Wan-Bissaka,Aaron,Wan-Bissaka,Defender,7,158.0,0.0,0.0,,,0.14,,,,0.0,94.0,1.0,,5.0,3.0,4.0,2.0,9.0,6.0,3.0,1.0
-2026/27,Champions League,616,637238,Bouaddi,Ayyoub,Bouaddi,Midfielder,43,127.0,0.0,1.0,1.0,0.03,0.16,0.0,,,2.0,122.0,2.0,,3.0,2.0,15.0,0.0,1.0,7.0,7.0,1.0
-2026/27,Champions League,618,119090,Goretzka,Leon,Goretzka,Midfielder,7,55.0,0.0,0.0,1.0,0.1,0.07,0.0,,,2.0,38.0,2.0,,0.0,0.0,3.0,1.0,1.0,2.0,2.0,1.0
+2026/27,Champions League,616,637238,Bouaddi,Ayyoub,Bouaddi,Midfielder,43,217.0,1.0,1.0,2.0,0.13,0.24,1.0,,,6.0,197.0,3.0,,6.0,5.0,19.0,1.0,2.0,13.0,11.0,2.0
+2026/27,Champions League,618,119090,Goretzka,Leon,Goretzka,Midfielder,7,79.0,0.0,0.0,1.0,0.1,0.08,0.0,,,2.0,56.0,2.0,,2.0,0.0,3.0,2.0,2.0,6.0,4.0,2.0
 2026/27,Champions League,621,616288,McAidoo,Ryan,McAidoo,Midfielder,43,28.0,0.0,1.0,,,0.6,,,,6.0,13.0,1.0,,0.0,0.0,0.0,0.0,0.0,,,0.0
 2026/27,Champions League,622,554054,Braithwaite,Kaden,Braithwaite,Defender,43,7.0,0.0,0.0,,,,,,,0.0,16.0,0.0,,0.0,0.0,0.0,0.0,0.0,,,0.0
 2026/27,Champions League,627,482616,Barcola,Bradley,Barcola,Midfielder,14,239.0,3.0,0.0,11.0,2.56,0.26,7.0,,,26.0,107.0,3.0,,3.0,2.0,9.0,0.0,2.0,12.0,12.0,2.0
-2026/27,Champions League,628,624777,Allan,Allan,Andrade Elias,Midfielder,43,97.0,0.0,0.0,2.0,0.06,0.09,1.0,,,8.0,53.0,0.0,,2.0,0.0,2.0,0.0,0.0,7.0,7.0,1.0
-2026/27,Champions League,630,245719,Harwood-Bellis,Taylor,Harwood-Bellis,Defender,7,0.0,,,,,,,,,,,,,,,,,,,,
-2026/27,Champions League,631,638987,Mbaye,Ibrahim,Mbaye,Midfielder,7,179.0,0.0,2.0,6.0,0.6599999999999999,0.69,3.0,,,14.0,114.0,9.0,,3.0,2.0,10.0,0.0,1.0,8.0,9.0,3.0
+2026/27,Champions League,628,624777,Allan,Allan,Andrade Elias,Midfielder,43,152.0,0.0,0.0,3.0,0.12,0.12,1.0,,,10.0,100.0,0.0,,3.0,0.0,3.0,0.0,0.0,11.0,11.0,2.0
+2026/27,Champions League,630,245719,Harwood-Bellis,Taylor,Harwood-Bellis,Defender,7,90.0,0.0,0.0,1.0,0.47,,0.0,,,1.0,69.0,0.0,,1.0,0.0,2.0,0.0,4.0,6.0,4.0,2.0
+2026/27,Champions League,631,638987,Mbaye,Ibrahim,Mbaye,Midfielder,7,203.0,0.0,2.0,6.0,0.6599999999999999,0.69,3.0,,,15.0,124.0,9.0,,3.0,2.0,11.0,0.0,1.0,9.0,10.0,4.0
 2026/27,Champions League,653,595480,Samba,Floyd,Samba,Midfielder,43,62.0,0.0,0.0,,,,,,,1.0,6.0,0.0,,1.0,0.0,1.0,0.0,0.0,2.0,4.0,1.0
 2026/27,Champions League,667,481283,Wright,James,Wright,Goalkeeper,7,0.0,,,,,,,,,,,,,,,,,,,,
 2026/27,Community Shield,1,154561,Raya,David,Raya Martín,Goalkeeper,3,90.0,,,,,,,,,,49.0,,,0.0,0.0,8.0,,0.0,1.0,,

@@ -1,7 +1,7 @@
 {
   "source": "olbauday/FPL-Core-Insights",
-  "source_commit": "3b5012e8eab0fbbe9e30b4bfee50dff3827dde25",
-  "source_updated_at": "2026-11-27T17:35:52Z",
+  "source_commit": "fde06ef7f31e33b8fd5e80d6a99d5af6f0f92919",
+  "source_updated_at": "2026-11-28T16:19:25Z",
   "competitions": [
     {
       "season": "2025/26",
@@ -105,9 +105,9 @@
     {
       "season": "2026/27",
       "competition": "Premier League",
-      "latest_source_bucket": 11,
-      "finished_matches": 110,
-      "matches_with_player_stats": 110,
+      "latest_source_bucket": 12,
+      "finished_matches": 111,
+      "matches_with_player_stats": 111,
       "coverage_pct": 100.0,
       "players": 533
     },
